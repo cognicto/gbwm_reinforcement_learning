@@ -1,0 +1,26 @@
+{
+  "trained_ppo": {
+    "mean_reward": 18.0,
+    "std_reward": 0.0,
+    "mean_goal_success_rate": 0.5,
+    "total_episodes": 100
+  },
+  "greedy": {
+    "mean_reward": 18.0,
+    "std_reward": 0.0,
+    "mean_goal_success_rate": 0.5,
+    "total_episodes": 100
+  },
+  "buy_and_hold": {
+    "mean_reward": 8.46,
+    "std_reward": 8.983785393696802,
+    "mean_goal_success_rate": 0.235,
+    "total_episodes": 100
+  },
+  "random": {
+    "mean_reward": 9.0,
+    "std_reward": 9.0,
+    "mean_goal_success_rate": 0.25,
+    "total_episodes": 100
+  }
+}

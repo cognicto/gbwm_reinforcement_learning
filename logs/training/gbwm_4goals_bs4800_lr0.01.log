@@ -1,0 +1,73 @@
+2025-08-19 10:08:25,756 - src.training.trainer - INFO - Trainer initialized for experiment: gbwm_4goals_bs4800_lr0.01
+2025-08-19 10:08:25,756 - src.training.trainer - INFO - Setting up environment with 4 goals
+2025-08-19 10:08:25,757 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-19 10:08:25,757 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-19 10:08:25,757 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 10:08:26,341 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 10:08:26,341 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - Total iterations: 10
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - Total timesteps: 800,000
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - Batch size: 4800
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 10:08:26,342 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:08:26,343 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/config.json
+2025-08-19 10:12:09,177 - src.training.trainer - INFO - Trainer initialized for experiment: gbwm_4goals_bs4800_lr0.01
+2025-08-19 10:12:09,178 - src.training.trainer - INFO - Setting up environment with 4 goals
+2025-08-19 10:12:09,179 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-19 10:12:09,179 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-19 10:12:09,179 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - Total iterations: 10
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - Total timesteps: 800,000
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - Batch size: 4800
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:12:09,750 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/config.json
+2025-08-19 10:12:26,011 - src.training.trainer - INFO - Iteration    0 | Reward:   22.04 | PolicyLoss:  -0.1011 | ValueLoss: 153.5576 | LR: 0.009000 | Episodes:   4800
+2025-08-19 10:12:26,018 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/checkpoints/checkpoint_0000.pth
+2025-08-19 10:12:26,221 - src.training.trainer - INFO - EVAL    0 | Reward:   54.00±0.00 | Goals: 75.0% | Wealth: $1,081,734
+2025-08-19 10:14:52,862 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:14:52,863 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 10:14:52,863 - src.training.trainer - INFO - Total training time: 163.11 seconds
+2025-08-19 10:14:52,863 - src.training.trainer - INFO - Time per iteration: 16.31 seconds
+2025-08-19 10:14:52,863 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:14:52,868 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/final_model.pth
+2025-08-19 10:14:52,868 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/training_results.json
+2025-08-19 10:14:52,868 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/final_model.pth
+2025-08-19 10:38:14,903 - src.training.trainer - INFO - Trainer initialized for experiment: gbwm_4goals_bs4800_lr0.01
+2025-08-19 10:38:14,903 - src.training.trainer - INFO - Setting up environment with 4 goals
+2025-08-19 10:38:14,904 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-19 10:38:14,905 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-19 10:38:14,905 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 10:38:15,468 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 10:38:15,468 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 10:38:15,468 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 10:38:15,468 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:38:15,468 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 10:38:15,468 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:38:15,468 - src.training.trainer - INFO - Total iterations: 10
+2025-08-19 10:38:15,468 - src.training.trainer - INFO - Total timesteps: 800,000
+2025-08-19 10:38:15,469 - src.training.trainer - INFO - Batch size: 4800
+2025-08-19 10:38:15,469 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 10:38:15,469 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:38:15,469 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/config.json
+2025-08-19 10:38:31,901 - src.training.trainer - INFO - Iteration    0 | Reward:   26.38 | PolicyLoss:  -0.0991 | ValueLoss: 154.3454 | LR: 0.009000 | Episodes:   4800
+2025-08-19 10:38:31,909 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/checkpoints/checkpoint_0000.pth
+2025-08-19 10:38:32,118 - src.training.trainer - INFO - EVAL    0 | Reward:   54.00±0.00 | Goals: 75.0% | Wealth: $1,091,458
+2025-08-19 10:41:00,866 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:41:00,867 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 10:41:00,867 - src.training.trainer - INFO - Total training time: 165.40 seconds
+2025-08-19 10:41:00,867 - src.training.trainer - INFO - Time per iteration: 16.54 seconds
+2025-08-19 10:41:00,867 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:41:00,873 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/final_model.pth
+2025-08-19 10:41:00,873 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/training_results.json
+2025-08-19 10:41:00,873 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01/final_model.pth

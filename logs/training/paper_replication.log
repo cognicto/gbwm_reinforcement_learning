@@ -1,0 +1,28 @@
+2025-08-19 10:22:02,991 - src.training.trainer - INFO - Trainer initialized for experiment: paper_replication
+2025-08-19 10:22:02,991 - src.training.trainer - INFO - Setting up environment with 4 goals
+2025-08-19 10:22:02,992 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-19 10:22:02,992 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-19 10:22:02,992 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - Total iterations: 10
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - Total timesteps: 800,000
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - Batch size: 4800
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 10:22:03,564 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:22:03,565 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/paper_replication/config.json
+2025-08-19 10:22:20,379 - src.training.trainer - INFO - Iteration    0 | Reward:   26.60 | PolicyLoss:  -0.0997 | ValueLoss: 157.5272 | LR: 0.009000 | Episodes:   4800
+2025-08-19 10:22:20,385 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/paper_replication/checkpoints/checkpoint_0000.pth
+2025-08-19 10:22:20,588 - src.training.trainer - INFO - EVAL    0 | Reward:   54.00±0.00 | Goals: 75.0% | Wealth: $1,425,251
+2025-08-19 10:25:14,546 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:25:14,547 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 10:25:14,547 - src.training.trainer - INFO - Total training time: 190.98 seconds
+2025-08-19 10:25:14,547 - src.training.trainer - INFO - Time per iteration: 19.10 seconds
+2025-08-19 10:25:14,547 - src.training.trainer - INFO - ============================================================
+2025-08-19 10:25:14,552 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/paper_replication/final_model.pth
+2025-08-19 10:25:14,552 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/paper_replication/training_results.json
+2025-08-19 10:25:14,552 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/paper_replication/final_model.pth

@@ -1,0 +1,35 @@
+{
+  "asset_classes": [
+    "US_Bonds",
+    "US_Stocks",
+    "International_Stocks"
+  ],
+  "expected_returns": [
+    0.0493,
+    0.077,
+    0.0886
+  ],
+  "volatilities": [
+    0.0412,
+    0.199,
+    0.1978
+  ],
+  "correlation_matrix": [
+    [
+      1.0,
+      -0.2077,
+      -0.2685
+    ],
+    [
+      -0.2077,
+      1.0,
+      0.7866
+    ],
+    [
+      -0.2685,
+      0.7866,
+      1.0
+    ]
+  ],
+  "source": "Das et al. 2024 - Reinforcement Learning for GBWM"
+}

@@ -1,0 +1,145 @@
+2025-08-19 20:11:19,733 - src.training.trainer - INFO - Trainer initialized for experiment: test_simulation
+2025-08-19 20:11:19,733 - src.training.trainer - INFO - Setting up environment with 4 goals in simulation mode
+2025-08-19 20:11:19,735 - src.environment.gbwm_env - INFO - GBWM Environment initialized in simulation mode
+2025-08-19 20:11:19,735 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-19 20:11:19,735 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-19 20:11:19,735 - src.training.trainer - INFO - Data mode: simulation
+2025-08-19 20:11:19,735 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - Total iterations: 1
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - Total timesteps: 1,600
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - Batch size: 100
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:20,459 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_simulation/config.json
+2025-08-19 20:11:20,940 - src.training.trainer - INFO - Iteration    0 | Reward:   24.94 | PolicyLoss:  -0.0771 | ValueLoss: 341.6937 | LR: 0.009000 | Episodes:    100
+2025-08-19 20:11:20,947 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_simulation/checkpoints/checkpoint_0000.pth
+2025-08-19 20:11:21,172 - src.training.trainer - INFO - EVAL    0 | Reward:   54.00±0.00 | Goals: 75.0% | Wealth: $1,076,656
+2025-08-19 20:11:21,172 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:21,172 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 20:11:21,172 - src.training.trainer - INFO - Total training time: 0.71 seconds
+2025-08-19 20:11:21,172 - src.training.trainer - INFO - Time per iteration: 0.71 seconds
+2025-08-19 20:11:21,172 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:21,177 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_simulation/final_model.pth
+2025-08-19 20:11:21,177 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_simulation/training_results.json
+2025-08-19 20:11:21,177 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_simulation/final_model.pth
+2025-08-19 20:11:21,178 - src.training.trainer - INFO - Trainer initialized for experiment: test_historical
+2025-08-19 20:11:21,178 - src.training.trainer - INFO - Setting up environment with 4 goals in historical mode
+2025-08-19 20:11:21,178 - src.training.trainer - INFO - Setting up historical data loader...
+2025-08-19 20:11:21,511 - src.data.historical_data_loader - INFO - Loaded S&P 500 data: 168 records
+2025-08-19 20:11:21,511 - src.data.historical_data_loader - INFO - Loaded bond data: 168 records
+2025-08-19 20:11:21,513 - src.data.historical_data_loader - INFO - Loaded 15 portfolio configurations
+2025-08-19 20:11:21,521 - src.data.historical_data_loader - INFO - Computed returns for 15 portfolios
+2025-08-19 20:11:21,521 - src.data.historical_data_loader - INFO - Data length: 168 time periods
+2025-08-19 20:11:21,521 - src.data.historical_data_loader - INFO - Historical data loaded: 168 time periods
+2025-08-19 20:11:21,522 - root - INFO - Historical data validation: {'total_periods': 168, 'num_portfolios': 15, 'available_16y_sequences': 153, 'date_range': {'start': '2010-01-31 00:00:00', 'end': '2023-12-31 00:00:00'}, 'missing_values': 30, 'portfolio_statistics': [{'portfolio_id': 0, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 1, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 2, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 3, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 4, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 5, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 6, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 7, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 8, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 9, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 10, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 11, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 12, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 13, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 14, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}]}
+2025-08-19 20:11:21,522 - src.training.trainer - INFO - Historical data loaded: 168 periods
+2025-08-19 20:11:21,522 - src.training.trainer - INFO - Available 16-year sequences: 153
+2025-08-19 20:11:21,522 - src.environment.gbwm_env - INFO - Historical mode: 153 sequences available
+2025-08-19 20:11:21,522 - src.environment.gbwm_env - INFO - GBWM Environment initialized in historical mode
+2025-08-19 20:11:21,522 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-19 20:11:21,522 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-19 20:11:21,522 - src.training.trainer - INFO - Data mode: historical
+2025-08-19 20:11:21,523 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - Total iterations: 1
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - Total timesteps: 1,280
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - Batch size: 80
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 20:11:21,524 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:21,525 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_historical/config.json
+2025-08-19 20:11:21,826 - src.training.trainer - INFO - Iteration    0 | Reward:   26.88 | PolicyLoss:  -0.0943 | ValueLoss: 380.9430 | LR: 0.009000 | Episodes:     80
+2025-08-19 20:11:21,832 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_historical/checkpoints/checkpoint_0000.pth
+2025-08-19 20:11:22,056 - src.training.trainer - INFO - EVAL    0 | Reward:   54.00±0.00 | Goals: 75.0% | Wealth: $484,536
+2025-08-19 20:11:22,056 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:22,056 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 20:11:22,056 - src.training.trainer - INFO - Total training time: 0.53 seconds
+2025-08-19 20:11:22,056 - src.training.trainer - INFO - Time per iteration: 0.53 seconds
+2025-08-19 20:11:22,056 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:22,060 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_historical/final_model.pth
+2025-08-19 20:11:22,060 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_historical/training_results.json
+2025-08-19 20:11:22,060 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_historical/final_model.pth
+2025-08-19 20:11:22,061 - src.training.trainer - INFO - Trainer initialized for experiment: test_convenience_sim
+2025-08-19 20:11:22,061 - src.training.trainer - INFO - Setting up environment with 2 goals in simulation mode
+2025-08-19 20:11:22,061 - src.environment.gbwm_env - INFO - GBWM Environment initialized in simulation mode
+2025-08-19 20:11:22,061 - src.training.trainer - INFO - Environment created with initial wealth: $216,300
+2025-08-19 20:11:22,061 - src.training.trainer - INFO - Goal schedule: [8, 16]
+2025-08-19 20:11:22,061 - src.training.trainer - INFO - Data mode: simulation
+2025-08-19 20:11:22,061 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - Total iterations: 10
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - Total timesteps: 8,000
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - Batch size: 50
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 20:11:22,062 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:22,063 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_sim/config.json
+2025-08-19 20:11:22,249 - src.training.trainer - INFO - Iteration    0 | Reward:   10.44 | PolicyLoss:  -0.0494 | ValueLoss:  87.5768 | LR: 0.009000 | Episodes:     50
+2025-08-19 20:11:22,253 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_sim/checkpoints/checkpoint_0000.pth
+2025-08-19 20:11:22,471 - src.training.trainer - INFO - EVAL    0 | Reward:   18.00±0.00 | Goals: 50.0% | Wealth: $901,338
+2025-08-19 20:11:24,175 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:24,176 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 20:11:24,176 - src.training.trainer - INFO - Total training time: 2.11 seconds
+2025-08-19 20:11:24,176 - src.training.trainer - INFO - Time per iteration: 0.21 seconds
+2025-08-19 20:11:24,176 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:24,181 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_sim/final_model.pth
+2025-08-19 20:11:24,181 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_sim/training_results.json
+2025-08-19 20:11:24,181 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_sim/final_model.pth
+2025-08-19 20:11:24,182 - src.training.trainer - INFO - Trainer initialized for experiment: test_convenience_hist
+2025-08-19 20:11:24,182 - src.training.trainer - INFO - Setting up environment with 2 goals in historical mode
+2025-08-19 20:11:24,182 - src.training.trainer - INFO - Setting up historical data loader...
+2025-08-19 20:11:24,188 - src.data.historical_data_loader - INFO - Loaded S&P 500 data: 168 records
+2025-08-19 20:11:24,188 - src.data.historical_data_loader - INFO - Loaded bond data: 168 records
+2025-08-19 20:11:24,190 - src.data.historical_data_loader - INFO - Loaded 15 portfolio configurations
+2025-08-19 20:11:24,195 - src.data.historical_data_loader - INFO - Computed returns for 15 portfolios
+2025-08-19 20:11:24,195 - src.data.historical_data_loader - INFO - Data length: 168 time periods
+2025-08-19 20:11:24,195 - src.data.historical_data_loader - INFO - Historical data loaded: 168 time periods
+2025-08-19 20:11:24,195 - root - INFO - Historical data validation: {'total_periods': 168, 'num_portfolios': 15, 'available_16y_sequences': 153, 'date_range': {'start': '2010-01-31 00:00:00', 'end': '2023-12-31 00:00:00'}, 'missing_values': 30, 'portfolio_statistics': [{'portfolio_id': 0, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 1, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 2, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 3, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 4, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 5, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 6, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 7, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 8, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 9, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 10, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 11, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 12, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 13, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 14, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}]}
+2025-08-19 20:11:24,195 - src.training.trainer - INFO - Historical data loaded: 168 periods
+2025-08-19 20:11:24,196 - src.training.trainer - INFO - Available 16-year sequences: 153
+2025-08-19 20:11:24,196 - src.environment.gbwm_env - INFO - Historical mode: 153 sequences available
+2025-08-19 20:11:24,196 - src.environment.gbwm_env - INFO - GBWM Environment initialized in historical mode
+2025-08-19 20:11:24,196 - src.training.trainer - INFO - Environment created with initial wealth: $216,300
+2025-08-19 20:11:24,196 - src.training.trainer - INFO - Goal schedule: [8, 16]
+2025-08-19 20:11:24,196 - src.training.trainer - INFO - Data mode: historical
+2025-08-19 20:11:24,196 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 20:11:24,197 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 20:11:24,197 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 20:11:24,197 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 20:11:24,197 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:24,197 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 20:11:24,197 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:24,198 - src.training.trainer - INFO - Total iterations: 10
+2025-08-19 20:11:24,198 - src.training.trainer - INFO - Total timesteps: 6,400
+2025-08-19 20:11:24,198 - src.training.trainer - INFO - Batch size: 40
+2025-08-19 20:11:24,198 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 20:11:24,198 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:24,198 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_hist/config.json
+2025-08-19 20:11:24,349 - src.training.trainer - INFO - Iteration    0 | Reward:   11.25 | PolicyLoss:  -0.0647 | ValueLoss:  97.6022 | LR: 0.009000 | Episodes:     40
+2025-08-19 20:11:24,352 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_hist/checkpoints/checkpoint_0000.pth
+2025-08-19 20:11:24,565 - src.training.trainer - INFO - EVAL    0 | Reward:   18.00±0.00 | Goals: 50.0% | Wealth: $294,024
+2025-08-19 20:11:26,014 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:26,014 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 20:11:26,014 - src.training.trainer - INFO - Total training time: 1.82 seconds
+2025-08-19 20:11:26,014 - src.training.trainer - INFO - Time per iteration: 0.18 seconds
+2025-08-19 20:11:26,014 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:11:26,019 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_hist/final_model.pth
+2025-08-19 20:11:26,020 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_hist/training_results.json
+2025-08-19 20:11:26,020 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_convenience_hist/final_model.pth
+2025-08-19 20:11:27,016 - src.training.trainer - INFO - Trainer initialized for experiment: gbwm_ppo_20250819_201127
+2025-08-19 20:11:27,017 - src.training.trainer - INFO - Trainer initialized for experiment: gbwm_ppo_20250819_201127
+2025-08-19 20:11:27,017 - src.training.trainer - INFO - Trainer initialized for experiment: my_custom_experiment

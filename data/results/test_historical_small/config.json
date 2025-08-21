@@ -1,0 +1,39 @@
+{
+  "training_config": {
+    "n_traj": 5000,
+    "batch_size": 1000,
+    "learning_rate": 0.01,
+    "clip_epsilon": 0.5,
+    "n_neurons": 64,
+    "ppo_epochs": 4,
+    "mini_batch_size": 256,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "entropy_coeff": 0.01,
+    "value_loss_coeff": 0.5,
+    "max_grad_norm": 0.5,
+    "time_horizon": 16,
+    "num_goals": 2,
+    "num_portfolios": 15,
+    "initial_wealth_base": 12.0,
+    "wealth_scaling": 0.85,
+    "device": "cpu",
+    "random_seed": 42,
+    "log_interval": 10,
+    "save_interval": 50,
+    "eval_interval": 20,
+    "data_mode": "historical",
+    "historical_data_path": "data/raw/market_data/",
+    "historical_validation_episodes": 1000,
+    "historical_augmentation": true,
+    "historical_start_date": "2010-01-01",
+    "historical_end_date": "2023-12-31",
+    "initial_wealth": 216300.11102659925
+  },
+  "experiment_name": "test_historical_small",
+  "environment": {
+    "num_goals": 2,
+    "initial_wealth": 216300.11102659925,
+    "time_horizon": 16
+  }
+}

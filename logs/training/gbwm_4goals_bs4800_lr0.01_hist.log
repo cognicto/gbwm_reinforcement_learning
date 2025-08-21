@@ -1,0 +1,84 @@
+2025-08-19 21:03:44,719 - src.training.trainer - INFO - Trainer initialized for experiment: gbwm_4goals_bs4800_lr0.01_hist
+2025-08-19 21:03:44,719 - src.training.trainer - INFO - Setting up environment with 4 goals in historical mode
+2025-08-19 21:03:44,719 - src.training.trainer - INFO - Setting up historical data loader...
+2025-08-19 21:03:45,118 - src.data.historical_data_loader - INFO - Loaded S&P 500 data: 168 records
+2025-08-19 21:03:45,118 - src.data.historical_data_loader - INFO - Loaded bond data: 168 records
+2025-08-19 21:03:45,120 - src.data.historical_data_loader - INFO - Loaded 15 portfolio configurations
+2025-08-19 21:03:45,128 - src.data.historical_data_loader - INFO - Computed returns for 15 portfolios
+2025-08-19 21:03:45,128 - src.data.historical_data_loader - INFO - Data length: 168 time periods
+2025-08-19 21:03:45,128 - src.data.historical_data_loader - INFO - Historical data loaded: 168 time periods
+2025-08-19 21:03:45,128 - root - INFO - Historical data validation: {'total_periods': 168, 'num_portfolios': 15, 'available_16y_sequences': 153, 'date_range': {'start': '2010-01-31 00:00:00', 'end': '2023-12-31 00:00:00'}, 'missing_values': 30, 'portfolio_statistics': [{'portfolio_id': 0, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 1, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 2, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 3, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 4, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 5, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 6, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 7, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 8, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 9, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 10, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 11, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 12, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 13, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 14, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}]}
+2025-08-19 21:03:45,129 - src.training.trainer - INFO - Historical data loaded: 168 periods
+2025-08-19 21:03:45,129 - src.training.trainer - INFO - Available 16-year sequences: 153
+2025-08-19 21:03:45,129 - src.training.trainer - WARNING - Limited historical sequences (153) vs batch size (4800). Training will use repeated sequences.
+2025-08-19 21:03:45,129 - src.environment.gbwm_env - INFO - Historical mode: 153 sequences available
+2025-08-19 21:03:45,129 - src.environment.gbwm_env - INFO - GBWM Environment initialized in historical mode
+2025-08-19 21:03:45,130 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-19 21:03:45,130 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-19 21:03:45,130 - src.training.trainer - INFO - Data mode: historical
+2025-08-19 21:03:45,130 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 21:03:45,711 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 21:03:45,711 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 21:03:45,711 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 21:03:45,711 - src.training.trainer - INFO - ============================================================
+2025-08-19 21:03:45,711 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 21:03:45,711 - src.training.trainer - INFO - ============================================================
+2025-08-19 21:03:45,711 - src.training.trainer - INFO - Total iterations: 10
+2025-08-19 21:03:45,712 - src.training.trainer - INFO - Total timesteps: 800,000
+2025-08-19 21:03:45,712 - src.training.trainer - INFO - Batch size: 4800
+2025-08-19 21:03:45,712 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 21:03:45,712 - src.training.trainer - INFO - ============================================================
+2025-08-19 21:03:45,714 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/config.json
+2025-08-19 21:04:04,429 - src.training.trainer - INFO - Iteration    0 | Reward:   23.82 | PolicyLoss:  -0.0972 | ValueLoss: 154.3096 | LR: 0.009000 | Episodes:   4800
+2025-08-19 21:04:04,437 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/checkpoints/checkpoint_0000.pth
+2025-08-19 21:04:04,641 - src.training.trainer - INFO - EVAL    0 | Reward:   54.00±0.00 | Goals: 75.0% | Wealth: $443,356
+2025-08-19 21:06:47,809 - src.training.trainer - INFO - ============================================================
+2025-08-19 21:06:47,810 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 21:06:47,810 - src.training.trainer - INFO - Total training time: 182.09 seconds
+2025-08-19 21:06:47,810 - src.training.trainer - INFO - Time per iteration: 18.21 seconds
+2025-08-19 21:06:47,810 - src.training.trainer - INFO - ============================================================
+2025-08-19 21:06:47,820 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/final_model.pth
+2025-08-19 21:06:47,820 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/training_results.json
+2025-08-19 21:06:47,820 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/final_model.pth
+2025-08-19 22:29:18,664 - src.training.trainer - INFO - Trainer initialized for experiment: gbwm_4goals_bs4800_lr0.01_hist
+2025-08-19 22:29:18,664 - src.training.trainer - INFO - Setting up environment with 4 goals in historical mode
+2025-08-19 22:29:18,664 - src.training.trainer - INFO - Setting up historical data loader...
+2025-08-19 22:29:19,211 - src.data.historical_data_loader - INFO - Loaded S&P 500 data: 168 records
+2025-08-19 22:29:19,211 - src.data.historical_data_loader - INFO - Loaded bond data: 168 records
+2025-08-19 22:29:19,213 - src.data.historical_data_loader - INFO - Loaded 15 portfolio configurations
+2025-08-19 22:29:19,222 - src.data.historical_data_loader - INFO - Computed returns for 15 portfolios
+2025-08-19 22:29:19,222 - src.data.historical_data_loader - INFO - Data length: 168 time periods
+2025-08-19 22:29:19,222 - src.data.historical_data_loader - INFO - Historical data loaded: 168 time periods
+2025-08-19 22:29:19,223 - root - INFO - Historical data validation: {'total_periods': 168, 'num_portfolios': 15, 'available_16y_sequences': 153, 'date_range': {'start': '2010-01-31 00:00:00', 'end': '2023-12-31 00:00:00'}, 'missing_values': 30, 'portfolio_statistics': [{'portfolio_id': 0, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 1, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 2, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 3, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 4, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 5, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 6, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 7, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 8, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 9, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 10, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 11, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 12, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 13, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 14, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}]}
+2025-08-19 22:29:19,223 - src.training.trainer - INFO - Historical data loaded: 168 periods
+2025-08-19 22:29:19,224 - src.training.trainer - INFO - Available 16-year sequences: 153
+2025-08-19 22:29:19,224 - src.training.trainer - WARNING - Limited historical sequences (153) vs batch size (4800). Training will use repeated sequences.
+2025-08-19 22:29:19,224 - src.environment.gbwm_env - INFO - Historical mode: 153 sequences available
+2025-08-19 22:29:19,225 - src.environment.gbwm_env - INFO - GBWM Environment initialized in historical mode
+2025-08-19 22:29:19,225 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-19 22:29:19,225 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-19 22:29:19,226 - src.training.trainer - INFO - Data mode: historical
+2025-08-19 22:29:19,226 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - ============================================================
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - ============================================================
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - Total iterations: 10
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - Total timesteps: 800,000
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - Batch size: 4800
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 22:29:19,853 - src.training.trainer - INFO - ============================================================
+2025-08-19 22:29:19,854 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/config.json
+2025-08-19 22:29:38,324 - src.training.trainer - INFO - Iteration    0 | Reward:   30.82 | PolicyLoss:  -0.0961 | ValueLoss: 156.6502 | LR: 0.009000 | Episodes:   4800
+2025-08-19 22:29:38,333 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/checkpoints/checkpoint_0000.pth
+2025-08-19 22:29:38,552 - src.training.trainer - INFO - EVAL    0 | Reward:   54.00±0.00 | Goals: 75.0% | Wealth: $475,579
+2025-08-19 22:32:19,756 - src.training.trainer - INFO - ============================================================
+2025-08-19 22:32:19,757 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 22:32:19,757 - src.training.trainer - INFO - Total training time: 179.90 seconds
+2025-08-19 22:32:19,757 - src.training.trainer - INFO - Time per iteration: 17.99 seconds
+2025-08-19 22:32:19,757 - src.training.trainer - INFO - ============================================================
+2025-08-19 22:32:19,767 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/final_model.pth
+2025-08-19 22:32:19,767 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/training_results.json
+2025-08-19 22:32:19,767 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/gbwm_4goals_bs4800_lr0.01_hist/final_model.pth

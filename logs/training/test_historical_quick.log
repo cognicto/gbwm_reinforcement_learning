@@ -1,0 +1,34 @@
+2025-08-19 20:12:22,279 - src.training.trainer - INFO - Trainer initialized for experiment: test_historical_quick
+2025-08-19 20:12:22,279 - src.training.trainer - INFO - Setting up environment with 2 goals in historical mode
+2025-08-19 20:12:22,279 - src.training.trainer - INFO - Setting up historical data loader...
+2025-08-19 20:12:22,550 - src.data.historical_data_loader - INFO - Loaded S&P 500 data: 168 records
+2025-08-19 20:12:22,550 - src.data.historical_data_loader - INFO - Loaded bond data: 168 records
+2025-08-19 20:12:22,552 - src.data.historical_data_loader - INFO - Loaded 15 portfolio configurations
+2025-08-19 20:12:22,562 - src.data.historical_data_loader - INFO - Computed returns for 15 portfolios
+2025-08-19 20:12:22,562 - src.data.historical_data_loader - INFO - Data length: 168 time periods
+2025-08-19 20:12:22,562 - src.data.historical_data_loader - INFO - Historical data loaded: 168 time periods
+2025-08-19 20:12:22,563 - root - INFO - Historical data validation: {'total_periods': 168, 'num_portfolios': 15, 'available_16y_sequences': 153, 'date_range': {'start': '2010-01-31 00:00:00', 'end': '2023-12-31 00:00:00'}, 'missing_values': 30, 'portfolio_statistics': [{'portfolio_id': 0, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 1, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 2, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 3, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 4, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 5, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 6, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 7, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 8, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 9, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 10, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 11, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 12, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 13, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}, {'portfolio_id': 14, 'mean_return': nan, 'std_return': nan, 'min_return': nan, 'max_return': nan}]}
+2025-08-19 20:12:22,563 - src.training.trainer - INFO - Historical data loaded: 168 periods
+2025-08-19 20:12:22,563 - src.training.trainer - INFO - Available 16-year sequences: 153
+2025-08-19 20:12:22,563 - src.training.trainer - WARNING - Limited historical sequences (153) vs batch size (4800). Training will use repeated sequences.
+2025-08-19 20:12:22,563 - src.environment.gbwm_env - INFO - Historical mode: 153 sequences available
+2025-08-19 20:12:22,565 - src.environment.gbwm_env - INFO - GBWM Environment initialized in historical mode
+2025-08-19 20:12:22,565 - src.training.trainer - INFO - Environment created with initial wealth: $216,300
+2025-08-19 20:12:22,565 - src.training.trainer - INFO - Goal schedule: [8, 16]
+2025-08-19 20:12:22,565 - src.training.trainer - INFO - Data mode: historical
+2025-08-19 20:12:22,565 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - Total iterations: 0
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - Total timesteps: 992
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - Batch size: 4800
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - Time horizon: 16
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:12:23,283 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/fintech/gbwm_reinforcement_learning/data/results/test_historical_quick/config.json
+2025-08-19 20:12:23,289 - src.training.trainer - INFO - ============================================================
+2025-08-19 20:12:23,290 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-19 20:12:23,290 - src.training.trainer - INFO - Total training time: 0.01 seconds

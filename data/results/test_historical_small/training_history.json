@@ -1,0 +1,67 @@
+[
+  {
+    "iteration": 1,
+    "total_timesteps": 16000,
+    "total_episodes": 1000,
+    "mean_episode_reward": 8.64,
+    "mean_episode_length": 16.0,
+    "policy_lr": 0.008,
+    "value_lr": 0.008,
+    "policy_loss": -0.06875981103688006,
+    "value_loss": 50.61988644372849,
+    "mean_advantage": -6.103515914901436e-08,
+    "mean_return": 5.059240818023682
+  },
+  {
+    "iteration": 2,
+    "total_timesteps": 32000,
+    "total_episodes": 2000,
+    "mean_episode_reward": 12.6,
+    "mean_episode_length": 16.0,
+    "policy_lr": 0.006,
+    "value_lr": 0.006,
+    "policy_loss": -0.061447820448804466,
+    "value_loss": 34.31906473068964,
+    "mean_advantage": 4.386901863995263e-08,
+    "mean_return": 7.355358600616455
+  },
+  {
+    "iteration": 3,
+    "total_timesteps": 48000,
+    "total_episodes": 3000,
+    "mean_episode_reward": 16.92,
+    "mean_episode_length": 16.0,
+    "policy_lr": 0.004000000000000001,
+    "value_lr": 0.004000000000000001,
+    "policy_loss": -0.04586606973131734,
+    "value_loss": 10.812090331599826,
+    "mean_advantage": -1.1444091896350983e-08,
+    "mean_return": 9.126092910766602
+  },
+  {
+    "iteration": 4,
+    "total_timesteps": 64000,
+    "total_episodes": 4000,
+    "mean_episode_reward": 17.46,
+    "mean_episode_length": 16.0,
+    "policy_lr": 0.0020000000000000005,
+    "value_lr": 0.0020000000000000005,
+    "policy_loss": -0.04385958356221044,
+    "value_loss": 4.510392154611292,
+    "mean_advantage": -1.1444091896350983e-08,
+    "mean_return": 9.466618537902832
+  },
+  {
+    "iteration": 5,
+    "total_timesteps": 80000,
+    "total_episodes": 5000,
+    "mean_episode_reward": 17.64,
+    "mean_episode_length": 16.0,
+    "policy_lr": 0.0,
+    "value_lr": 0.0,
+    "policy_loss": -0.039779370768912255,
+    "value_loss": 2.0187113505810323,
+    "mean_advantage": 9.53674295089968e-09,
+    "mean_return": 9.612557411193848
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "description": "Geometric Brownian Motion parameters for portfolio simulation",
+  "time_step": 1.0,
+  "portfolios": {
+    "portfolio_0": {
+      "drift": 0.051934451399499995,
+      "volatility": 0.037351
+    },
+    "portfolio_1": {
+      "drift": 0.054020650510204084,
+      "volatility": 0.04864285714285715
+    },
+    "portfolio_2": {
+      "drift": 0.05597934358317347,
+      "volatility": 0.059934714285714286
+    },
+    "portfolio_3": {
+      "drift": 0.057810530618408164,
+      "volatility": 0.07122657142857143
+    },
+    "portfolio_4": {
+      "drift": 0.059514211615908155,
+      "volatility": 0.08251842857142858
+    },
+    "portfolio_5": {
+      "drift": 0.061090386575673464,
+      "volatility": 0.09381028571428572
+    },
+    "portfolio_6": {
+      "drift": 0.06253905549770408,
+      "volatility": 0.10510214285714287
+    },
+    "portfolio_7": {
+      "drift": 0.063860218382,
+      "volatility": 0.116394
+    },
+    "portfolio_8": {
+      "drift": 0.06505387522856122,
+      "volatility": 0.12768585714285716
+    },
+    "portfolio_9": {
+      "drift": 0.06612002603738776,
+      "volatility": 0.1389777142857143
+    },
+    "portfolio_10": {
+      "drift": 0.0670586708084796,
+      "volatility": 0.15026957142857145
+    },
+    "portfolio_11": {
+      "drift": 0.06786980954183673,
+      "volatility": 0.16156142857142858
+    },
+    "portfolio_12": {
+      "drift": 0.06855344223745918,
+      "volatility": 0.1728532857142857
+    },
+    "portfolio_13": {
+      "drift": 0.06910956889534695,
+      "volatility": 0.18414514285714287
+    },
+    "portfolio_14": {
+      "drift": 0.0695381895155,
+      "volatility": 0.195437
+    }
+  }
+}

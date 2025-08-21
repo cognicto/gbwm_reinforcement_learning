@@ -1,0 +1,25 @@
+{
+  "num_episodes": 10000,
+  "num_goals": 4,
+  "deterministic": true,
+  "mean_reward": 54.0,
+  "std_reward": 0.0,
+  "min_reward": 54.0,
+  "max_reward": 54.0,
+  "median_reward": 54.0,
+  "mean_goal_success_rate": 0.75,
+  "std_goal_success_rate": 0.0,
+  "mean_goals_taken": 3.0,
+  "goal_achievement_distribution": [
+    0,
+    0,
+    0,
+    10000,
+    0
+  ],
+  "mean_final_wealth": 1277060.5257439618,
+  "std_final_wealth": 830233.4061885495,
+  "median_final_wealth": 1065534.2998573272,
+  "total_utility_achieved": 540000.0,
+  "perfect_score_rate": 0.0
+}

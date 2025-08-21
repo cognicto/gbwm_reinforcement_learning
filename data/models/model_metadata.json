@@ -1,0 +1,106 @@
+{
+  "models": [
+    {
+      "name": "gbwm_4goals_bs4800_lr0.01.pth",
+      "path": "models/production/gbwm_4goals_bs4800_lr0.01.pth",
+      "experiment": "gbwm_4goals_bs4800_lr0.01",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 4,
+      "batch_size": 4800,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "gbwm_4goals_bs4800_lr0.01.pth",
+      "path": "models/production/gbwm_4goals_bs4800_lr0.01.pth",
+      "experiment": "gbwm_4goals_bs4800_lr0.01",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 4,
+      "batch_size": 4800,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "paper_replication.pth",
+      "path": "models/production/paper_replication.pth",
+      "experiment": "paper_replication",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 4,
+      "batch_size": 4800,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "paper_replication.pth",
+      "path": "models/production/paper_replication.pth",
+      "experiment": "paper_replication",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 4,
+      "batch_size": 4800,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "quick_test.pth",
+      "path": "models/production/quick_test.pth",
+      "experiment": "quick_test",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 4,
+      "batch_size": 4800,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "quick_test.pth",
+      "path": "models/production/quick_test.pth",
+      "experiment": "quick_test",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 4,
+      "batch_size": 4800,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "test_training.pth",
+      "path": "models/production/test_training.pth",
+      "experiment": "test_training",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 4,
+      "batch_size": 200,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "test_training.pth",
+      "path": "models/production/test_training.pth",
+      "experiment": "test_training",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 4,
+      "batch_size": 200,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "gbwm_8goals_bs4800_lr0.01.pth",
+      "path": "models/production/gbwm_8goals_bs4800_lr0.01.pth",
+      "experiment": "gbwm_8goals_bs4800_lr0.01",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 8,
+      "batch_size": 4800,
+      "learning_rate": 0.01
+    },
+    {
+      "name": "gbwm_8goals_bs4800_lr0.01.pth",
+      "path": "models/production/gbwm_8goals_bs4800_lr0.01.pth",
+      "experiment": "gbwm_8goals_bs4800_lr0.01",
+      "type": "production",
+      "size_mb": 0.19,
+      "num_goals": 8,
+      "batch_size": 4800,
+      "learning_rate": 0.01
+    }
+  ],
+  "last_updated": "2025-08-19 15:10:21.900970",
+  "total_models": 10
+}

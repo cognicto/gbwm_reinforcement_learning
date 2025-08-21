@@ -1,0 +1,15 @@
+[
+  {
+    "iteration": 1,
+    "total_timesteps": 76800,
+    "total_episodes": 4800,
+    "mean_episode_reward": 31.08,
+    "mean_episode_length": 16.0,
+    "policy_lr": 0.0,
+    "value_lr": 0.0,
+    "policy_loss": -0.08732332160075505,
+    "value_loss": 159.24691982269286,
+    "mean_advantage": -2.2252400810884865e-08,
+    "mean_return": 18.415573120117188
+  }
+]

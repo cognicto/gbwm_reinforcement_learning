@@ -1,0 +1,45 @@
+{
+  "description": "Standard scenarios for model evaluation",
+  "scenarios": [
+    {
+      "name": "Young & Poor",
+      "age": 25,
+      "wealth": 50000
+    },
+    {
+      "name": "Young & Average",
+      "age": 27,
+      "wealth": 120000
+    },
+    {
+      "name": "Young & Wealthy",
+      "age": 28,
+      "wealth": 250000
+    },
+    {
+      "name": "Mid-career Struggling",
+      "age": 33,
+      "wealth": 100000
+    },
+    {
+      "name": "Mid-career Average",
+      "age": 35,
+      "wealth": 200000
+    },
+    {
+      "name": "Mid-career Successful",
+      "age": 36,
+      "wealth": 400000
+    },
+    {
+      "name": "Late-career Conservative",
+      "age": 38,
+      "wealth": 300000
+    },
+    {
+      "name": "Late-career Wealthy",
+      "age": 40,
+      "wealth": 600000
+    }
+  ]
+}

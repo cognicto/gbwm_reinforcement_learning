@@ -1,0 +1,95 @@
+{
+  "num_portfolios": 15,
+  "portfolios": [
+    {
+      "id": 0,
+      "expected_return": 0.052632,
+      "volatility": 0.037351,
+      "risk_level": "Conservative"
+    },
+    {
+      "id": 1,
+      "expected_return": 0.055203714285714287,
+      "volatility": 0.04864285714285715,
+      "risk_level": "Conservative"
+    },
+    {
+      "id": 2,
+      "expected_return": 0.05777542857142857,
+      "volatility": 0.059934714285714286,
+      "risk_level": "Conservative"
+    },
+    {
+      "id": 3,
+      "expected_return": 0.060347142857142856,
+      "volatility": 0.07122657142857143,
+      "risk_level": "Conservative"
+    },
+    {
+      "id": 4,
+      "expected_return": 0.06291885714285714,
+      "volatility": 0.08251842857142858,
+      "risk_level": "Conservative"
+    },
+    {
+      "id": 5,
+      "expected_return": 0.06549057142857143,
+      "volatility": 0.09381028571428572,
+      "risk_level": "Moderate"
+    },
+    {
+      "id": 6,
+      "expected_return": 0.06806228571428571,
+      "volatility": 0.10510214285714287,
+      "risk_level": "Moderate"
+    },
+    {
+      "id": 7,
+      "expected_return": 0.070634,
+      "volatility": 0.116394,
+      "risk_level": "Moderate"
+    },
+    {
+      "id": 8,
+      "expected_return": 0.07320571428571429,
+      "volatility": 0.12768585714285716,
+      "risk_level": "Moderate"
+    },
+    {
+      "id": 9,
+      "expected_return": 0.07577742857142858,
+      "volatility": 0.1389777142857143,
+      "risk_level": "Moderate"
+    },
+    {
+      "id": 10,
+      "expected_return": 0.07834914285714287,
+      "volatility": 0.15026957142857145,
+      "risk_level": "Aggressive"
+    },
+    {
+      "id": 11,
+      "expected_return": 0.08092085714285714,
+      "volatility": 0.16156142857142858,
+      "risk_level": "Aggressive"
+    },
+    {
+      "id": 12,
+      "expected_return": 0.08349257142857143,
+      "volatility": 0.1728532857142857,
+      "risk_level": "Aggressive"
+    },
+    {
+      "id": 13,
+      "expected_return": 0.08606428571428572,
+      "volatility": 0.18414514285714287,
+      "risk_level": "Aggressive"
+    },
+    {
+      "id": 14,
+      "expected_return": 0.088636,
+      "volatility": 0.195437,
+      "risk_level": "Aggressive"
+    }
+  ]
+}

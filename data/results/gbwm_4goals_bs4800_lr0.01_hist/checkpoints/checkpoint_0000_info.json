@@ -1,0 +1,62 @@
+{
+  "iteration": 0,
+  "metrics": {
+    "iteration": 1,
+    "total_timesteps": 76800,
+    "total_episodes": 4800,
+    "mean_episode_reward": 30.82,
+    "mean_episode_length": 16.0,
+    "policy_lr": 0.009000000000000001,
+    "value_lr": 0.009000000000000001,
+    "policy_loss": -0.09608227676091095,
+    "value_loss": 156.65020516077678,
+    "mean_advantage": 9.139378676081833e-08,
+    "mean_return": 16.503034591674805
+  },
+  "config": {
+    "n_traj": 50000,
+    "batch_size": 4800,
+    "learning_rate": 0.01,
+    "clip_epsilon": 0.5,
+    "n_neurons": 64,
+    "ppo_epochs": 4,
+    "mini_batch_size": 256,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "entropy_coeff": 0.01,
+    "value_loss_coeff": 0.5,
+    "max_grad_norm": 0.5,
+    "time_horizon": 16,
+    "num_goals": 4,
+    "num_portfolios": 15,
+    "initial_wealth_base": 12.0,
+    "wealth_scaling": 0.85,
+    "device": "cpu",
+    "random_seed": 42,
+    "log_interval": 10,
+    "save_interval": 50,
+    "eval_interval": 20,
+    "data_mode": "historical",
+    "historical_data_path": "data/raw/market_data/",
+    "historical_validation_episodes": 1000,
+    "historical_augmentation": true,
+    "historical_start_date": "2010-01-01",
+    "historical_end_date": "2023-12-31",
+    "initial_wealth": 389881.150250993
+  },
+  "training_history": [
+    {
+      "iteration": 1,
+      "total_timesteps": 76800,
+      "total_episodes": 4800,
+      "mean_episode_reward": 30.82,
+      "mean_episode_length": 16.0,
+      "policy_lr": 0.009000000000000001,
+      "value_lr": 0.009000000000000001,
+      "policy_loss": -0.09608227676091095,
+      "value_loss": 156.65020516077678,
+      "mean_advantage": 9.139378676081833e-08,
+      "mean_return": 16.503034591674805
+    }
+  ]
+}
