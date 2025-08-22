@@ -46,6 +46,302 @@
     - Volatility range: 3.74% to 19.54% annually
 
 
+############################# Efficient frontier calculation ##################################
+
+⏺ Now let me explain how the efficient frontier is calculated from raw data in this GBWM project.
+
+  How the Efficient Frontier is Calculated from Raw Data
+
+  Overview
+
+  The efficient frontier represents the optimal risk-return tradeoff for portfolios. In this GBWM project, it's calculated using Modern Portfolio Theory 
+  (Markowitz optimization) applied to historical market data.
+
+  Step-by-Step Process
+
+  Step 1: Raw Data Collection
+
+  # Raw market data sources
+  raw_data_sources = {
+      'sp500_historical.csv': 'S&P 500 price data (US stocks)',
+      'bond_yields.csv': '10-Year Treasury yields (US bonds)',
+      'intl_stock_data.csv': 'International stock indices'  # Approximated
+  }
+
+  # Example S&P 500 data format:
+  sp500_data = pd.DataFrame({
+      'Date': ['2010-01-01', '2010-02-01', '2010-03-01', ...],
+      'Close': [1115.10, 1104.49, 1169.43, ...]  # Monthly closing prices
+  })
+
+  # Example bond yield data format:  
+  bond_data = pd.DataFrame({
+      'Date': ['2010-01-01', '2010-02-01', '2010-03-01', ...],
+      '10Y_Treasury': [3.84, 3.69, 3.73, ...]  # 10-year Treasury yields (%)
+  })
+
+  Step 2: Compute Asset Returns
+
+  def _compute_asset_returns(self):
+      """Convert price data to monthly returns for 3 asset classes"""
+
+      # 1. US Stock Returns (S&P 500)
+      us_stock_returns = self.sp500_data['Close'].pct_change().dropna()
+      # Example: [0.023, -0.015, 0.058, 0.012, -0.031, ...]
+
+      # 2. Bond Returns (from Treasury yields)
+      bond_yields = self.bond_data['10Y_Treasury'] / 100  # Convert to decimal
+      bond_returns = bond_yields / 12  # Monthly approximation
+      # Add duration effect (price moves opposite to yield changes)
+      yield_changes = bond_yields.diff().fillna(0)
+      bond_returns = bond_returns + yield_changes * -0.5  # Duration = -0.5
+      # Example: [0.0032, 0.0038, 0.0031, ...]
+
+      # 3. International Stock Returns (approximated from S&P 500)
+      intl_correlation = 0.7866  # Historical US-International correlation
+      intl_base = us_stock_returns * intl_correlation
+      # Add uncorrelated noise for realistic diversification
+      intl_noise = np.random.normal(0, us_stock_returns.std() * 0.3, len(us_stock_returns))
+      intl_stock_returns = intl_base + intl_noise
+      # Example: [0.018, -0.008, 0.042, 0.015, -0.022, ...]
+
+      return bond_returns, us_stock_returns, intl_stock_returns
+
+  Step 3: Calculate Asset Statistics
+
+  # Historical statistics from raw data (2010-2023)
+  asset_statistics = {
+      'bonds': {
+          'mean_return': 0.0041,    # 4.93% annual return
+          'volatility': 0.0343,     # 4.12% annual volatility
+          'monthly_returns': bond_returns_array
+      },
+      'us_stocks': {
+          'mean_return': 0.0642,    # 7.70% annual return  
+          'volatility': 0.1658,     # 19.90% annual volatility
+          'monthly_returns': us_stock_returns_array
+      },
+      'intl_stocks': {
+          'mean_return': 0.0738,    # 8.86% annual return
+          'volatility': 0.1648,     # 19.78% annual volatility  
+          'monthly_returns': intl_stock_returns_array
+      }
+  }
+
+  # Correlation matrix from historical data
+  correlation_matrix = np.corrcoef([
+      bond_returns,
+      us_stock_returns,
+      intl_stock_returns
+  ])
+  # Result:
+  # [[1.00, 0.12, 0.08],   # Bonds vs [Bonds, US, Intl]
+  #  [0.12, 1.00, 0.79],   # US vs [Bonds, US, Intl] 
+  #  [0.08, 0.79, 1.00]]   # Intl vs [Bonds, US, Intl]
+
+  # Covariance matrix
+  volatilities = [0.0343, 0.1658, 0.1648]
+  covariance_matrix = correlation_matrix * np.outer(volatilities, volatilities)
+
+  Step 4: Markowitz Optimization
+
+  def generate_efficient_frontier(asset_returns, covariance_matrix, num_portfolios=15):
+      """
+      Generate efficient frontier using Markowitz optimization
+      
+      Solves: min(w^T * Σ * w) subject to w^T * μ = target_return, Σw = 1
+      Where: w = weights, Σ = covariance matrix, μ = expected returns
+      """
+
+      n_assets = len(asset_returns)
+
+      # Target return range
+      min_return = 0.052632  # Conservative lower bound (5.26% annual)
+      max_return = 0.088636  # Aggressive upper bound (8.86% annual)
+      target_returns = np.linspace(min_return, max_return, num_portfolios)
+
+      portfolios = []
+
+      for i, target_return in enumerate(target_returns):
+          # Solve quadratic programming problem for minimum variance
+          # min: 0.5 * w^T * Σ * w
+          # s.t: w^T * μ = target_return
+          #      Σw = 1
+          #      w >= 0  (long-only constraint)
+
+          # Using scipy.optimize.minimize with constraints
+          from scipy.optimize import minimize
+
+          def objective(weights):
+              return 0.5 * np.dot(weights.T, np.dot(covariance_matrix, weights))
+
+          constraints = [
+              {'type': 'eq', 'fun': lambda w: np.sum(w) - 1.0},  # Weights sum to 1
+              {'type': 'eq', 'fun': lambda w: np.dot(w, asset_returns) - target_return}  # Target return
+          ]
+
+          bounds = [(0, 1) for _ in range(n_assets)]  # Long-only
+          initial_guess = np.ones(n_assets) / n_assets
+
+          result = minimize(objective, initial_guess, method='SLSQP',
+                           bounds=bounds, constraints=constraints)
+
+          if result.success:
+              optimal_weights = result.x
+              portfolio_return = np.dot(optimal_weights, asset_returns)
+              portfolio_volatility = np.sqrt(np.dot(optimal_weights.T,
+                                                  np.dot(covariance_matrix, optimal_weights)))
+
+              portfolios.append({
+                  'id': i,
+                  'weights': optimal_weights,
+                  'expected_return': portfolio_return,
+                  'volatility': portfolio_volatility,
+                  'risk_level': classify_risk_level(i, num_portfolios)
+              })
+
+      return portfolios
+
+  Step 5: Generate Portfolio Weights
+
+  # Example efficient frontier optimization results:
+  efficient_portfolios = [
+      # Conservative Portfolios (0-4)
+      {'id': 0, 'weights': [0.85, 0.10, 0.05], 'return': 0.0526, 'volatility': 0.0374},  # 85% bonds
+      {'id': 1, 'weights': [0.78, 0.15, 0.07], 'return': 0.0552, 'volatility': 0.0486},  # 78% bonds
+      {'id': 2, 'weights': [0.71, 0.20, 0.09], 'return': 0.0578, 'volatility': 0.0599},  # 71% bonds
+      {'id': 3, 'weights': [0.64, 0.25, 0.11], 'return': 0.0603, 'volatility': 0.0712},  # 64% bonds
+      {'id': 4, 'weights': [0.57, 0.30, 0.13], 'return': 0.0629, 'volatility': 0.0825},  # 57% bonds
+
+      # Moderate Portfolios (5-9)
+      {'id': 5, 'weights': [0.50, 0.35, 0.15], 'return': 0.0655, 'volatility': 0.0938},  # 50% bonds
+      {'id': 6, 'weights': [0.43, 0.40, 0.17], 'return': 0.0681, 'volatility': 0.1051},  # 43% bonds
+      {'id': 7, 'weights': [0.36, 0.45, 0.19], 'return': 0.0706, 'volatility': 0.1164},  # 36% bonds
+      {'id': 8, 'weights': [0.29, 0.50, 0.21], 'return': 0.0732, 'volatility': 0.1277},  # 29% bonds
+      {'id': 9, 'weights': [0.22, 0.55, 0.23], 'return': 0.0758, 'volatility': 0.1390},  # 22% bonds
+
+      # Aggressive Portfolios (10-14)  
+      {'id': 10, 'weights': [0.15, 0.60, 0.25], 'return': 0.0783, 'volatility': 0.1503}, # 15% bonds
+      {'id': 11, 'weights': [0.10, 0.65, 0.25], 'return': 0.0809, 'volatility': 0.1616}, # 10% bonds
+      {'id': 12, 'weights': [0.05, 0.70, 0.25], 'return': 0.0835, 'volatility': 0.1729}, # 5% bonds
+      {'id': 13, 'weights': [0.02, 0.73, 0.25], 'return': 0.0861, 'volatility': 0.1841}, # 2% bonds  
+      {'id': 14, 'weights': [0.00, 0.75, 0.25], 'return': 0.0886, 'volatility': 0.1954}, # 0% bonds
+  ]
+
+  Step 6: Historical Portfolio Returns
+
+  def compute_historical_portfolio_returns(self):
+      """Apply portfolio weights to historical asset returns"""
+
+      # Get historical asset returns
+      bond_returns, us_returns, intl_returns = self._compute_asset_returns()
+
+      # For each portfolio on efficient frontier
+      self.portfolio_returns = []
+
+      for i in range(self.num_portfolios):
+          weights = self.portfolio_weights[i]  # [bond_weight, us_weight, intl_weight]
+
+          # Weighted combination of asset returns for each time period
+          portfolio_return_series = (
+              weights[0] * bond_returns +     # Bond component
+              weights[1] * us_returns +       # US stock component  
+              weights[2] * intl_returns       # International component
+          )
+
+          self.portfolio_returns.append(portfolio_return_series.values)
+
+      # Result: 15 time series of historical returns (one per portfolio)
+      # Shape: (15 portfolios, 168 months) for 2010-2023 data
+
+  Concrete Example: Portfolio 5 (Moderate)
+
+  Asset Allocation
+
+  portfolio_5 = {
+      'weights': [0.50, 0.35, 0.15],  # [50% bonds, 35% US stocks, 15% intl stocks]
+      'expected_return': 0.0655,       # 6.55% annual return
+      'volatility': 0.0938             # 9.38% annual volatility
+  }
+
+  Historical Return Calculation
+
+  # Example month: March 2020 (COVID crash)
+  march_2020_returns = {
+      'bonds': 0.008,      # +0.8% (flight to safety)
+      'us_stocks': -0.124, # -12.4% (market crash)
+      'intl_stocks': -0.135 # -13.5% (international crash)
+  }
+
+  # Portfolio 5 return for March 2020:
+  portfolio_5_return = (
+      0.50 * 0.008 +      # Bond contribution: +0.4%
+      0.35 * (-0.124) +   # US stock contribution: -4.34%
+      0.15 * (-0.135)     # International contribution: -2.03%
+  ) = 0.004 - 0.0434 - 0.0203 = -0.0597  # -5.97% total
+
+  # This demonstrates diversification benefit:
+  # Pure stock portfolio would have lost ~12.4%
+  # Mixed portfolio lost only ~6% due to bond allocation
+
+  Efficient Frontier Visualization
+
+  # Risk-Return Profile of Generated Portfolios
+  portfolio_profiles = {
+      'Conservative': {
+          'return_range': '5.26% - 6.29%',
+          'volatility_range': '3.74% - 8.25%',
+          'bond_allocation': '57% - 85%'
+      },
+      'Moderate': {
+          'return_range': '6.55% - 7.58%',
+          'volatility_range': '9.38% - 13.90%',
+          'bond_allocation': '22% - 50%'
+      },
+      'Aggressive': {
+          'return_range': '7.83% - 8.86%',
+          'volatility_range': '15.03% - 19.54%',
+          'bond_allocation': '0% - 15%'
+      }
+  }
+
+  Integration with PPO Training
+
+  Training Mode: Simulated Returns
+
+  # During training, use theoretical GBM based on efficient frontier parameters
+  def simulate_portfolio_return(portfolio_id, random_seed):
+      expected_return = efficient_portfolios[portfolio_id]['expected_return']
+      volatility = efficient_portfolios[portfolio_id]['volatility']
+
+      return geometric_brownian_motion(1.0, expected_return, volatility, dt=1.0, random_seed)
+
+  Evaluation Mode: Historical Returns
+
+  # During evaluation, use actual historical performance
+  def get_historical_return(portfolio_id, time_step, episode_start):
+      historical_sequence = self.portfolio_returns[portfolio_id]
+      return historical_sequence[episode_start + time_step]
+
+  Key Benefits of This Approach
+
+  1. Theoretically Sound: Based on Modern Portfolio Theory
+
+  2. Empirically Grounded: Uses real historical market data
+
+  3. Diversification: Captures correlation benefits across asset classes
+
+  4. Risk Spectrum: Provides full range from conservative to aggressive strategies
+
+  5. Realistic Performance: Historical backtesting validates theoretical parameters
+
+  This efficient frontier calculation ensures the PPO agent trains on realistic portfolio choices that reflect actual market dynamics and optimization
+  principles used in professional wealth management.
+
+
+################################################################################################
+
+
 
 ⏺  Step 2: Data Preprocessing Pipeline
 
@@ -104,7 +400,7 @@
   - US stocks: +6.23% → Base international: +6.23% × 0.7866 = +4.90%
   - Add noise: +4.90% + random noise = +5.12%
 
-  📈 Step 3: Portfolio Return Computation
+   Step 3: Portfolio Return Computation
 
   3-Asset Portfolio Model
 
@@ -411,6 +707,12 @@
 
 
 
+
+
+
+
+
+
   The GBWM system uses a comprehensive evaluation framework that assesses trained models across multiple dimensions:
 
   1. Core Evaluation Metrics
@@ -679,700 +981,5 @@
   confidence_intervals = compute_ci(bootstrap_results, confidence_level=0.95)
 
   The evaluation system provides comprehensive, statistically rigorous assessment of trained models, enabling confident deployment of RL agents for real-world
-  financial decision making! 📊🎯
+  financial decision making!
 
-
-
-
-
-
-  🧠 Complete PPO Training Cycle: From Raw Data to Weight Updates
-
-  🔄 Training Cycle Overview
-
-  Raw Environment Data → Data Collection → Forward Pass → Loss Computation → Backpropagation → Weight Updates
-
-  Let me walk through one complete training iteration with actual data examples.
-
-  ---
-  Phase 1: Data Collection (collect_trajectories())
-
-  Environment State Generation
-
-  Raw Environment State:
-  # Episode starts
-  initial_wealth = 389881.0  # For 4 goals
-  current_time = 0
-  max_wealth = 10000000.0    # Normalization constant
-
-  # Raw observation from environment
-  raw_obs = [current_time, initial_wealth]  # [0, 389881.0]
-
-  # Normalized state for neural network
-  normalized_state = [
-      current_time / 16,              # 0/16 = 0.0 (time progress)
-      initial_wealth / max_wealth     # 389881/10000000 = 0.039 (wealth ratio)
-  ]
-
-  Input to Neural Network:
-  state_tensor = torch.FloatTensor([0.0, 0.039]).unsqueeze(0)
-  # Shape: (1, 2) - batch_size=1, features=2
-  # Values: [[0.0, 0.039]]
-
-  Forward Pass Through Policy Network
-
-  Shared Backbone:
-
-  # Input: [0.0, 0.039]
-  # Layer 1: Linear(2, 64) + ReLU
-  shared_layer1 = ReLU(Linear(state_tensor))  # Shape: (1, 64)
-  # Example output: [0.12, 0.0, 0.45, 0.23, ..., 0.67]  # 64 values
-
-  # Layer 2: Linear(64, 64) + ReLU  
-  shared_features = ReLU(Linear(shared_layer1))  # Shape: (1, 64)
-  # Example output: [0.34, 0.78, 0.0, 0.89, ..., 0.12]  # 64 values
-
-  Goal Decision Head:
-
-  # Goal head: Linear(64, 2) + Softmax
-  goal_logits = Linear_goal(shared_features)  # Shape: (1, 2)
-  # Example logits: [1.2, -0.8]  # [skip_logit, take_logit]
-
-  goal_probs = Softmax(goal_logits)  # Shape: (1, 2)
-  # Example: [0.86, 0.14]  # [skip_prob=86%, take_prob=14%]
-
-  Portfolio Decision Head:
-
-  # Portfolio head: Linear(64, 15) + Softmax
-  portfolio_logits = Linear_portfolio(shared_features)  # Shape: (1, 15)
-  # Example logits: [-0.1, 0.3, 0.8, 1.2, 0.5, ..., -0.4]  # 15 values
-
-  portfolio_probs = Softmax(portfolio_logits)  # Shape: (1, 15)
-  # Example: [0.05, 0.08, 0.12, 0.18, 0.09, ..., 0.04]  # 15 probabilities summing to 1.0
-
-  Action Sampling
-
-  # Sample actions from probability distributions
-  goal_dist = Categorical(goal_probs)
-  portfolio_dist = Categorical(portfolio_probs)
-
-  goal_action = goal_dist.sample()        # e.g., 0 (skip goal)
-  portfolio_action = portfolio_dist.sample()  # e.g., 7 (moderate portfolio)
-
-  # Roll 1: random_num = 0.2  → 0.2 < 0.7 → action = 0 (skip)
-  # Roll 2: random_num = 0.8  → 0.8 > 0.7 → action = 1 (take)  
-  # Roll 3: random_num = 0.5  → 0.5 < 0.7 → action = 0 (skip)
-  # Roll 4: random_num = 0.9  → 0.9 > 0.7 → action = 1 (take)
-  # Roll 5: random_num = 0.1  → 0.1 < 0.7 → action = 0 (skip)
-
-
-  actions = torch.tensor([goal_action, portfolio_action])  # [0, 7]
-
-  # Compute log probabilities for PPO
-  goal_log_prob = goal_dist.log_prob(goal_action)        # e.g., -0.15
-  portfolio_log_prob = portfolio_dist.log_prob(portfolio_action)  # e.g., -1.89
-  total_log_prob = goal_log_prob + portfolio_log_prob    # e.g., -2.04
-
-    # If we took action 0 (skip goal) and the probabilities were:
-  goal_probs = [0.8, 0.2]  # 80% skip, 20% take
-  goal_action = 0          # We chose to skip
-
-  # log_prob tells us the likelihood of our choice
-  goal_log_prob = goal_dist.log_prob(goal_action)
-  # This calculates: log(0.8) = -0.223
-
-
-  Value Network Forward Pass
-
-  # Same input state
-  value_input = torch.FloatTensor([0.0, 0.039]).unsqueeze(0)  # Shape: (1, 2)
-
-  # Value network: 2 → 64 → 64 → 1
-  value_layer1 = ReLU(Linear(value_input))        # Shape: (1, 64)
-  value_layer2 = ReLU(Linear(value_layer1))       # Shape: (1, 64)  
-  value_estimate = Linear(value_layer2)           # Shape: (1, 1)
-
-  # Example value estimate
-  value_estimate = 15.7  # Expected future utility
-
-  Environment Step
-
-  # Execute action in environment
-  action_array = [0, 7]  # [goal_decision, portfolio_choice]
-  next_obs, reward, done, info = env.step(action_array)
-
-
-  Complete env.step(action_array) Example
-
-  Input: Action Array
-
-  action_array = np.array([1, 7])  # [goal_action, portfolio_action]
-  #                         ↑  ↑
-  #                      take  portfolio_7 (moderate-aggressive)
-
-  What Happens Inside env.step()
-
-  Before the step:
-  # Current environment state
-  current_time = 2          # Year 2 of 10-year horizon
-  current_wealth = 450000   # $450,000
-  goals_taken = [0]         # Already took goal at time 0
-  total_utility = 25.0      # Utility accumulated so far
-
-  Step 1: Execute Goal Decision
-
-  goal_action = 1  # Take goal
-
-  # Check if goal is available at time=2
-  goal_available = True  # Let's say a goal is available
-
-  # Goal parameters at time=2
-  goal_cost = 50000      # Costs $50,000
-  goal_utility = 20.0    # Gives 20 utility points
-
-  # Check if can afford: $450,000 >= $50,000 ✓
-  if current_wealth >= goal_cost:
-      wealth_after_goal = 450000 - 50000 = 400000  # $400,000 remaining
-      reward = 20.0  # Utility gained
-      goals_taken.append(2)  # Add to goals taken list
-      total_utility += 20.0  # Update total utility
-
-  Step 2: Evolve Portfolio
-
-  portfolio_action = 7  # Choose portfolio 7 (moderate-aggressive)
-
-  # Portfolio 7 characteristics (from efficient frontier)
-  portfolio_7_mean = 0.08    # 8% expected annual return  
-  portfolio_7_std = 0.15     # 15% volatility
-
-  # Wealth evolution (using Geometric Brownian Motion)
-  wealth = 400000  # After goal cost
-
-  # Generate random market movement
-  random_shock = np.random.normal(0, 1)  # e.g., 0.5 (positive market day)
-
-  # Calculate portfolio return
-  drift = 0.08 - 0.5 * (0.15 ** 2) = 0.08 - 0.01125 = 0.06875
-  diffusion = 0.15 * 0.5 = 0.075
-  portfolio_return = np.exp(0.06875 + 0.075) = np.exp(0.14375) = 1.155
-
-  # New wealth
-  new_wealth = 400000 * 1.155 = 462000  # $462,000
-
-  Step 3: Update Environment State
-
-  # Update time and wealth
-  current_time = 2 + 1 = 3
-  current_wealth = 462000
-
-  # Check if episode is done
-  terminated = (current_time >= 10)  # False, still have 7 years left
-  truncated = False  # GBWM doesn't use truncation
-
-  Step 4: Create Observation
-
-  # Normalize state for neural network
-  normalized_time = 3 / 10 = 0.3        # 30% through episode
-  normalized_wealth = 462000 / 500000 = 0.924  # 92.4% of initial wealth
-
-  next_obs = np.array([0.3, 0.924])  # [normalized_time, normalized_wealth]
-
-  Step 5: Create Info Dictionary
-
-  info = {
-      'time': 3,
-      'wealth': 462000,
-      'goal_available': True,      # Was goal available when we acted?
-      'goal_taken': True,          # Did we take the goal?
-      'goals_taken_so_far': 2,     # Total goals taken (time 0 + time 2)
-      'total_utility': 45.0,       # 25.0 + 20.0
-      'portfolio_choice': 7        # Which portfolio we chose
-  }
-
-  Complete Return Values
-
-  next_obs, reward, terminated, truncated, info = env.step([1, 7])
-
-  # next_obs = np.array([0.3, 0.924])   # New normalized state
-  # reward = 20.0                       # Utility gained from taking goal
-  # terminated = False                  # Episode not finished
-  # truncated = False                   # No truncation
-  # info = {...}                        # Dictionary with episode details
-
-  Visual Timeline
-
-  Before step:  Time=2, Wealth=$450k, Utility=25
-  Action:       [Take Goal, Portfolio 7]
-  Goal Effect:  Wealth=$450k → $400k, Utility=25 → 45, Reward=+20
-  Portfolio:    $400k × 1.155 return → $462k
-  After step:   Time=3, Wealth=$462k, Utility=45
-
-  Returns: obs=[0.3, 0.924], reward=20.0, done=False, info={...}
-
-
-  # Example results
-  reward = 0.0              # No goal taken (goal not available at step 0)
-  next_obs = [0.0625, 0.041]  # [1/16, new_wealth/max_wealth] after portfolio evolution
-
-  Trajectory Data Storage
-
-  After collecting 4,800 episodes × 16 steps each = 76,800 experiences:
-
-  batch_data = {
-      'states': torch.FloatTensor([
-          [0.000, 0.039],    # Step 0, Episode 0
-          [0.063, 0.041],    # Step 1, Episode 0  
-          [0.125, 0.043],    # Step 2, Episode 0
-          ...
-          [0.875, 0.067],    # Step 14, Episode 4799
-          [1.000, 0.072]     # Step 15, Episode 4799
-      ]),  # Shape: (76800, 2)
-
-      'actions': torch.LongTensor([
-          [0, 7],   # Episode 0, Step 0
-          [0, 5],   # Episode 0, Step 1
-          [1, 12],  # Episode 0, Step 2 (took goal)
-          ...
-      ]),  # Shape: (76800, 2)
-
-      'rewards': torch.FloatTensor([
-          0.0,   # Step 0 (no goal)
-          0.0,   # Step 1 (no goal)
-          14.0,  # Step 2 (took goal, utility = 10 + 4)
-          ...
-      ]),  # Shape: (76800,)
-
-      'old_log_probs': torch.FloatTensor([
-          -2.04,  # Step 0 log probability
-          -1.87,  # Step 1 log probability
-          -2.15,  # Step 2 log probability
-          ...
-      ]),  # Shape: (76800,)
-
-      'values': torch.FloatTensor([
-          15.7,   # Value estimate for step 0
-          16.2,   # Value estimate for step 1
-          14.8,   # Value estimate for step 2
-          ...
-      ])  # Shape: (76800,)
-  }
-
-  ---
-  🎯 Phase 2: Advantage Computation (GAE)
-
-  Generalized Advantage Estimation
-
-  # Example for one episode (16 steps)
-  rewards = [0.0, 0.0, 14.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-  values = [15.7, 16.2, 14.8, 13.9, 12.1, 11.3, 10.8, 9.2, 8.1, 7.5, 6.8, 5.9, 4.2, 3.1, 1.8, 0.0]
-  dones = [False] * 15 + [True]  # Episode ends at step 15
-
-  # GAE computation (γ=0.99, λ=0.95)
-  advantages = []
-  gae = 0
-
-  for t in reversed(range(16)):
-      if t == 15:
-          next_value = 0  # Terminal state
-      else:
-          next_value = values[t + 1]
-
-      # TD error
-      delta = rewards[t] + 0.99 * next_value - values[t]
-
-      # GAE
-      gae = delta + 0.99 * 0.95 * gae
-      advantages.append(gae)
-
-  advantages.reverse()
-
-  # Example advantages
-  advantages = [2.3, 1.8, 5.2, -0.7, -1.1, -0.8, -0.6, -0.4, -0.2, 0.1, 0.3, 0.5, 0.8, 1.2, 1.8, 0.0]
-
-  # Returns (for value function targets)  
-  returns = [adv + value for adv, value in zip(advantages, values)]
-  returns = [18.0, 18.0, 20.0, 13.2, 11.0, 10.5, 10.2, 8.8, 7.9, 7.6, 7.1, 6.4, 5.0, 4.3, 3.6, 0.0]
-
-  # Normalize advantages
-  advantages_normalized = (advantages - mean(advantages)) / (std(advantages) + 1e-8)
-
-  ---
-  📈 Phase 3: PPO Update (4 epochs)
-
-  Mini-batch Processing
-
-  # Configuration
-  ppo_epochs = 4
-  mini_batch_size = 256
-  batch_size = 76800
-
-  for epoch in range(4):  # Use same data 4 times
-      # Shuffle data
-      indices = torch.randperm(76800)
-
-      for start in range(0, 76800, 256):  # Mini-batches of 256
-          end = min(start + 256, 76800)
-          mb_indices = indices[start:end]
-
-          # Extract mini-batch
-          mb_states = batch_data['states'][mb_indices]      # Shape: (256, 2)
-          mb_actions = batch_data['actions'][mb_indices]    # Shape: (256, 2)
-          mb_old_log_probs = batch_data['old_log_probs'][mb_indices]  # Shape: (256,)
-          mb_advantages = advantages_normalized[mb_indices]  # Shape: (256,)
-          mb_returns = returns[mb_indices]                  # Shape: (256,)
-
-  Forward Pass (Current Policy)
-
-  # Policy network forward pass
-  goal_probs, portfolio_probs = policy_net(mb_states)  # Shapes: (256, 2), (256, 15)
-
-  # Extract log probabilities for taken actions
-  goal_actions = mb_actions[:, 0]       # Shape: (256,)
-  portfolio_actions = mb_actions[:, 1]  # Shape: (256,)
-
-  goal_log_probs = torch.log(goal_probs.gather(1, goal_actions.unsqueeze(1))).squeeze()
-  portfolio_log_probs = torch.log(portfolio_probs.gather(1, portfolio_actions.unsqueeze(1))).squeeze()
-  new_log_probs = goal_log_probs + portfolio_log_probs  # Shape: (256,)
-
-  # Entropy for exploration bonus
-  goal_entropy = -(goal_probs * torch.log(goal_probs + 1e-8)).sum(dim=1)
-  portfolio_entropy = -(portfolio_probs * torch.log(portfolio_probs + 1e-8)).sum(dim=1)
-  entropy = goal_entropy + portfolio_entropy  # Shape: (256,)
-
-  PPO Loss Computation
-
-  # Probability ratio
-  ratio = torch.exp(new_log_probs - mb_old_log_probs)  # Shape: (256,)
-
-  # Example ratios: [1.05, 0.92, 1.31, 0.87, ...]
-
-  # PPO clipped surrogate objective
-  surr1 = ratio * mb_advantages                        # Unclipped objective
-  surr2 = torch.clamp(ratio, 0.5, 1.5) * mb_advantages  # Clipped (ε=0.5)
-
-  # Policy loss (negative because we want to maximize)
-  policy_loss = -torch.min(surr1, surr2).mean()       # Scalar
-
-  # Entropy bonus
-  entropy_loss = -0.01 * entropy.mean()               # Encourage exploration
-
-  # Total policy loss
-  total_policy_loss = policy_loss + entropy_loss      # e.g., 0.234
-
-  # Example calculation:
-  # ratio = [1.05, 0.92, 1.31, 0.87]
-  # advantages = [2.1, -1.3, 0.8, -0.6]
-  # surr1 = [2.21, 1.20, 1.05, -0.52] 
-  # surr2 = [2.1, 1.20, 1.2, -0.6]    # ratio clamped to [0.5, 1.5]
-  # min = [2.1, 1.20, 1.05, -0.6]
-  # policy_loss = -mean([2.1, 1.20, 1.05, -0.6]) = -0.94
-
-  Value Network Loss
-
-  # Value network forward pass
-  current_values = value_net(mb_states)  # Shape: (256, 1)
-
-  # Value loss (MSE between predicted and actual returns)
-  value_loss = F.mse_loss(current_values.squeeze(), mb_returns)  # Scalar
-
-  # Example: 
-  # predicted_values = [17.2, 16.8, 19.5, 12.9, ...]
-  # target_returns =   [18.0, 18.0, 20.0, 13.2, ...]
-  # value_loss = mean((predicted - target)^2) = 1.23
-
-  ---
-  🔙 Phase 4: Backpropagation & Weight Updates
-
-  Policy Network Gradients
-
-  # Zero gradients
-  policy_optimizer.zero_grad()
-
-  # Backward pass
-  total_policy_loss.backward()  # Compute gradients
-
-  # Gradient clipping
-  torch.nn.utils.clip_grad_norm_(policy_net.parameters(), max_grad_norm=0.5)
-
-  # Example gradients for policy network weights:
-  # shared_backbone.0.weight.grad: Tensor of shape (64, 2) with values [-0.023, 0.041, ...]
-  # goal_head.weight.grad: Tensor of shape (2, 64) with values [0.012, -0.034, ...]
-  # portfolio_head.weight.grad: Tensor of shape (15, 64) with values [0.003, -0.018, ...]
-
-  # Update weights
-  policy_optimizer.step()  # Adam optimizer applies gradients
-
-  Value Network Gradients
-
-  # Zero gradients
-  value_optimizer.zero_grad()
-
-  # Backward pass
-  value_loss.backward()  # Compute gradients
-
-  # Gradient clipping
-  torch.nn.utils.clip_grad_norm_(value_net.parameters(), max_grad_norm=0.5)
-
-  # Example gradients for value network weights:
-  # layer1.weight.grad: Tensor of shape (64, 2) with values [0.008, -0.015, ...]
-  # layer2.weight.grad: Tensor of shape (64, 64) with values [-0.006, 0.011, ...]
-  # output.weight.grad: Tensor of shape (1, 64) with values [0.021, -0.009, ...]
-
-  # Update weights
-  value_optimizer.step()  # Adam optimizer applies gradients
-
-  Adam Weight Updates
-
-  # For each parameter θ in the network:
-  # Adam maintains moving averages of gradients
-
-  # Example for one weight in shared backbone:
-  old_weight = 0.234
-  gradient = -0.023
-  learning_rate = 0.01
-
-  # Adam update (simplified):
-  m_t = 0.9 * m_t_1 + 0.1 * gradient           # Momentum
-  v_t = 0.999 * v_t_1 + 0.001 * gradient**2    # Adaptive learning rate
-  m_hat = m_t / (1 - 0.9**t)                   # Bias correction
-  v_hat = v_t / (1 - 0.999**t)                 # Bias correction
-
-  new_weight = old_weight - learning_rate * m_hat / (sqrt(v_hat) + 1e-8)
-  new_weight = 0.234 - 0.01 * adjusted_gradient = 0.236  # Weight increased
-
-  ---
-  📊 Complete Iteration Summary
-
-  Data Flow Summary:
-
-  Input:  76,800 experiences from environment interaction
-         ↓
-  Processing: GAE computation, advantage normalization
-         ↓
-  Training: 4 epochs × 300 mini-batches × 256 samples = 307,200 gradient updates
-         ↓
-  Output: Updated policy & value network weights
-
-  Network Changes:
-
-  # Before iteration
-  policy_net.goal_head.weight[0,0] = 0.234
-  value_net.output.weight[0,0] = -0.456
-
-  # After iteration  
-  policy_net.goal_head.weight[0,0] = 0.236  # Slightly increased
-  value_net.output.weight[0,0] = -0.451     # Slightly adjusted
-
-  # Improvement metrics
-  policy_loss_reduction: 2.34 → 2.28  # Better action selection
-  value_loss_reduction: 1.23 → 1.18   # Better value estimates
-  mean_reward_improvement: 24.3 → 24.7  # Better performance
-
-  Learning Progress:
-
-  Iteration 0: Random policy, high loss, low rewards
-  Iteration 1: Slight improvement in goal timing
-  Iteration 2: Better portfolio selection in volatile markets
-  ...
-  Iteration 10: Near-optimal policy matching greedy strategy
-
-  This complete cycle repeats 10 times (for paper settings), with the policy gradually improving from random actions to optimal financial decision-making,
-  learning to time goals perfectly and select appropriate portfolios based on market conditions! 🎯📈
-
-
-
-
-
-
-
-  Step 1: Policy Network Loss Calculation
-
-⏺ Read(src/models/ppo_agent.py)
-  ⎿  Read 30 lines (ctrl+r to expand)
-
-⏺ Policy Network Example
-
-  # Example mini-batch data
-  mb_states = torch.tensor([[0.3, 0.924], [0.4, 0.856], [0.5, 0.798]])  # 3 states
-  mb_actions = torch.tensor([[1, 7], [0, 3], [1, 12]])  # 3 actions taken
-  mb_old_log_probs = torch.tensor([-2.1, -1.8, -2.5])  # Original action probabilities
-  mb_advantages = torch.tensor([2.3, -0.8, 1.5])  # How good actions were
-
-  # Step 1: Get new probabilities with current policy
-  new_log_probs, entropy = policy_net.evaluate_actions(mb_states, mb_actions)
-  # new_log_probs = [-1.9, -1.9, -2.2]  # Updated probabilities
-
-  # Step 2: Compute probability ratios
-  ratio = torch.exp(new_log_probs - mb_old_log_probs)
-  # ratio[0] = exp(-1.9 - (-2.1)) = exp(0.2) = 1.22  # Action became MORE likely
-  # ratio[1] = exp(-1.9 - (-1.8)) = exp(-0.1) = 0.90  # Action became LESS likely  
-  # ratio[2] = exp(-2.2 - (-2.5)) = exp(0.3) = 1.35  # Action became MORE likely
-
-  # Step 3: PPO clipped objective (prevents huge policy changes)
-  clip_epsilon = 0.2  # Clip to [0.8, 1.2] range
-  surr1 = ratio * mb_advantages
-  # surr1 = [1.22 * 2.3, 0.90 * (-0.8), 1.35 * 1.5] = [2.81, -0.72, 2.03]
-
-  surr2 = torch.clamp(ratio, 0.8, 1.2) * mb_advantages
-  # surr2 = [1.2 * 2.3, 0.90 * (-0.8), 1.2 * 1.5] = [2.76, -0.72, 1.8]
-
-  # Step 4: Take minimum (conservative update)
-  policy_objective = torch.min(surr1, surr2).mean()
-  # policy_objective = mean([2.76, -0.72, 1.8]) = 1.28
-
-  # Step 5: Policy loss (negative because we want to maximize objective)
-  policy_loss = -policy_objective = -1.28
-
-  # Step 6: Add entropy bonus (encourages exploration)
-  entropy_loss = -0.01 * entropy.mean()  # entropy_coeff = 0.01
-  # entropy_loss = -0.01 * 1.5 = -0.015
-
-  # Step 7: Total loss
-  total_policy_loss = policy_loss + entropy_loss = -1.28 + (-0.015) = -1.295
-
-  Step 2: Policy Network Backpropagation
-
-  # Clear previous gradients
-  policy_optimizer.zero_grad()
-
-  # Compute gradients
-  total_policy_loss.backward()  # This is where the magic happens!
-
-  # What happens inside backward():
-  # ∂loss/∂w₁ = -0.23  # Gradient for weight 1
-  # ∂loss/∂w₂ = +0.15  # Gradient for weight 2  
-  # ∂loss/∂w₃ = -0.08  # Gradient for weight 3
-  # ... (gradients for all 10,000+ parameters)
-
-  # Clip gradients (prevent exploding gradients)
-  nn.utils.clip_grad_norm_(policy_net.parameters(), max_grad_norm=0.5)
-
-  # Update weights
-  policy_optimizer.step()  # w_new = w_old - learning_rate * gradient
-
-  Concrete Weight Update Example
-
-  # Before update
-  goal_head_weight_old = torch.tensor([0.45, -0.23])  # Weight connecting to "take goal"
-
-  # Gradient computed by backprop  
-  gradient = torch.tensor([-0.12, +0.08])  # Loss decreases if we change weights this way
-
-  # Weight update (Adam optimizer)
-  learning_rate = 0.0003
-  goal_head_weight_new = goal_head_weight_old - learning_rate * gradient
-  goal_head_weight_new = [0.45, -0.23] - 0.0003 * [-0.12, +0.08]
-  goal_head_weight_new = [0.45036, -0.23024]
-
-  # Result: Network now slightly more likely to recommend "take goal" in similar situations
-
-  Step 3: Value Network Loss & Backpropagation
-
-⏺ Read(src/models/ppo_agent.py)
-  ⎿  Read 15 lines (ctrl+r to expand)
-
-⏺ Value Network Example
-
-  # Same mini-batch states
-  mb_states = torch.tensor([[0.3, 0.924], [0.4, 0.856], [0.5, 0.798]])
-  mb_returns = torch.tensor([22.5, 15.3, 18.7])  # Actual returns (advantages + old_values)
-
-  # Step 1: Get current value predictions
-  new_values = value_net(mb_states)
-  # new_values = [20.1, 16.8, 17.2]  # Current network predictions
-
-  # Step 2: Compute Mean Squared Error loss
-  value_loss = MSE(new_values, mb_returns)
-  # value_loss = mean([(20.1-22.5)², (16.8-15.3)², (17.2-18.7)²])
-  # value_loss = mean([5.76, 2.25, 2.25]) = 3.42
-
-  # Step 3: Backpropagation
-  value_optimizer.zero_grad()
-  value_loss.backward()
-
-  # What happens inside backward():
-  # Network learns: "When I see state [0.3, 0.924], predict closer to 22.5, not 20.1"
-  # ∂loss/∂w₁ = +0.18  # Increase this weight
-  # ∂loss/∂w₂ = -0.09  # Decrease this weight
-  # ... (gradients for all value network parameters)
-
-  # Step 4: Update weights
-  value_optimizer.step()
-
-  Step 4: Multiple Epochs & Mini-batches
-
-  PPO repeats this process multiple times for better learning:
-
-  # PPO configuration
-  ppo_epochs = 4          # Train on same data 4 times
-  mini_batch_size = 256   # Process 256 samples at once
-  batch_size = 2048       # Total collected samples
-
-  # Training loop
-  for epoch in range(ppo_epochs):  # 4 epochs
-      for mini_batch in shuffle_and_split(batch_data, mini_batch_size):  # 8 mini-batches
-          # Policy update (as shown above)
-          policy_loss = compute_and_update_policy(mini_batch)
-
-          # Value update (as shown above)  
-          value_loss = compute_and_update_value(mini_batch)
-
-  # Total updates per iteration: 4 epochs × 8 mini-batches = 32 updates each network
-
-  Step 5: Learning Rate Scheduling
-
-  # Learning rates decay over time for stable convergence
-  initial_lr = 0.0003
-  current_iteration = 150
-  total_iterations = 1000
-
-  # Linear decay
-  lr_factor = 1.0 - (current_iteration / total_iterations)  # 0.85
-  current_lr = initial_lr * lr_factor = 0.0003 * 0.85 = 0.000255
-
-  # Both optimizers use this reduced learning rate
-  policy_optimizer.param_groups[0]['lr'] = current_lr
-  value_optimizer.param_groups[0]['lr'] = current_lr
-
-  Visualization: Weight Changes Over Time
-
-  # Policy Network Goal Head Weights (example trajectory)
-  Iteration 0:   [0.45, -0.23, 0.12, -0.08]
-  Iteration 50:  [0.48, -0.19, 0.15, -0.05]  # Learning to favor goal-taking
-  Iteration 100: [0.52, -0.15, 0.18, -0.02]  # Stronger goal-taking preference  
-  Iteration 150: [0.54, -0.13, 0.19, -0.01]  # Converging to optimal policy
-
-  # Value Network Final Layer Weights (example trajectory)  
-  Iteration 0:   [2.1, -1.8]
-  Iteration 50:  [2.3, -1.6]  # Better at predicting future utility
-  Iteration 100: [2.4, -1.5]  # More accurate value estimates
-  Iteration 150: [2.45, -1.4] # Stable, accurate predictions
-
-  Error Signals Driving Learning
-
-  Policy Network learns from:
-  - Positive advantages: "That action was better than expected → increase probability"
-  - Negative advantages: "That action was worse than expected → decrease probability"
-
-  Value Network learns from:
-  - Prediction errors: "I predicted 15.7 but actual return was 22.5 → adjust predictions upward"
-
-  Complete Training Iteration Summary
-
-  # One complete PPO iteration:
-  1. Collect 2048 experiences using current policy
-  2. Compute advantages and returns
-  3. For 4 epochs:
-     a. Shuffle data into 8 mini-batches of 256 samples
-     b. For each mini-batch:
-        - Update policy network (32 parameter updates total)
-        - Update value network (32 parameter updates total)
-  4. Decay learning rates
-  5. Repeat for next iteration
-
-  # Result: Both networks gradually improve their performance
-  # - Policy becomes better at selecting profitable actions
-  # - Value becomes better at predicting future utility
-
-  This backpropagation phase is where the actual "learning" happens - the networks adjust their internal parameters based on experience to make better decisions
-  and predictions in future episodes.
