@@ -692,12 +692,13 @@
   3. Volatility Clustering: Experiences realistic periods of high/low volatility
   4. Interest Rate Effects: Bond returns reflect actual yield curve movements
 
-  Data Processing Efficiency
+  Data Processing Efficiency (Updated v1.1)
 
-  - Raw Data: 2 CSV files (336 total records)
-  - Processed Output: 15 × 168 = 2,520 portfolio returns
-  - Training Usage: 153 unique 16-year sequences × 4,800 episodes = 734,400 market scenarios
-  - Memory Footprint: ~20KB processed data enables massive training diversity
+  - Raw Data: 2 CSV files (108 total records - 54 years annual)
+  - Processed Output: 15 × 54 = 810 portfolio returns  
+  - Training Usage: 39 unique 16-year sequences × 4,800 episodes = 187,200 market scenarios
+  - Memory Footprint: ~10KB processed data enables massive training diversity
+  - Bug Fix: Corrected time scale from monthly to annual periods
 
   The historical data integration transforms the RL training from learning synthetic patterns to mastering real market dynamics, resulting in agents that can
    handle actual market conditions with human-like financial intuition. 

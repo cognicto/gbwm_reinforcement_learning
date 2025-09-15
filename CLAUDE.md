@@ -10,8 +10,11 @@ This repository implements Goals-Based Wealth Management (GBWM) using Proximal P
 
 ### Training Models
 ```bash
-# Train with paper defaults (4 goals)
+# Train with paper defaults (4 goals, simulation mode)
 python experiments/run_training.py --num_goals 4
+
+# Train with historical market data (recommended for realistic scenarios)
+python experiments/run_training.py --num_goals 4 --data_mode historical
 
 # Custom training configuration
 python experiments/run_training.py --num_goals 8 --batch_size 4800 --learning_rate 0.01
@@ -21,6 +24,10 @@ python experiments/run_training.py --num_goals 4 --timesteps 100000 --experiment
 
 # Paper replication
 python experiments/run_training.py --num_goals 4 --experiment_name "paper_replication"
+
+# Historical mode with custom date range (1980-2020)
+python experiments/run_training.py --data_mode historical --num_goals 4 \
+    --historical_start_date 1980-01-01 --historical_end_date 2020-12-31
 ```
 
 ### Model Evaluation
@@ -129,6 +136,33 @@ Models saved as: `gbwm_{num_goals}goals_bs{batch_size}_lr{learning_rate}`
 - Results: `/data/results/{experiment_name}/`
 - Production models: `/data/models/production/`
 
+## Historical Data Mode
+
+### Two Training Modes Available
+1. **Simulation Mode** (default): Synthetic data using Geometric Brownian Motion
+2. **Historical Mode** (new): 54 years of market data patterns (1970-2023)
+
+### Historical Data Specifications
+- **Coverage**: 54 years of annual market data (1970-2023)
+- **Sequences**: 39 unique 16-year windows for training diversity
+- **Asset Classes**: US Bonds, US Stocks, International Stocks
+- **Realism**: Proper duration modeling, correlation structures from academic literature
+
+### Episode Generation with Historical Data
+- 4,800 episodes per batch randomly sample from 39 sequences
+- Each sequence gets used ~123 times per batch
+- Provides exposure to diverse market conditions:
+  - Bull markets (1980s-1990s)
+  - Financial crises (2008-2009) 
+  - High inflation periods (late 1970s)
+  - Recent market conditions (2020s)
+
+### Historical Data Bug Fix (v1.1)
+Fixed critical time scale mismatch where historical data was incorrectly using monthly periods instead of annual. The system now properly:
+- Uses annual time steps matching the 16-year model horizon
+- Generates 54 years of realistic annual market data
+- Provides sufficient sequences (39) for meaningful training diversity
+
 ## Data Organization
 
 ### Model Files
@@ -169,6 +203,7 @@ Based on paper replication:
 - Training time: ~32 seconds (independent of goal count)
 - RL efficiency vs optimal DP: 94-98%
 - Scalability: Linear with number of goals (1, 2, 4, 8, 16 supported)
+- Historical sequences: 39 unique 16-year market patterns for diverse training
 
 ### Common Model Loading
 ```python

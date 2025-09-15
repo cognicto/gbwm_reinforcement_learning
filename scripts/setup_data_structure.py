@@ -54,20 +54,63 @@ def create_sample_raw_data():
     # 1. Market data (sample historical data)
     print("\n📊 Creating sample market data...")
 
-    # Sample S&P 500 data
-    dates = pd.date_range('2010-01-01', '2023-12-31', freq='M')
+    # Sample S&P 500 data - ANNUAL frequency for 50 years (1970-2023)
+    # This provides enough data for meaningful 16-year sequences
+    dates = pd.date_range('1970-12-31', '2023-12-31', freq='Y')  # Annual data
+    print(f"  📅 Generating {len(dates)} years of annual market data (1970-2023)")
+    
+    # More realistic annual return parameters
+    annual_mean_return = 0.10  # 10% average annual return
+    annual_volatility = 0.16   # 16% annual volatility
+    
+    # Generate annual returns using GBM
+    annual_returns = np.random.normal(annual_mean_return, annual_volatility, len(dates))
+    
+    # Convert to cumulative prices starting from 100
+    initial_price = 100
+    prices = [initial_price]
+    for i in range(len(annual_returns)):
+        prices.append(prices[-1] * (1 + annual_returns[i]))
+    
     sp500_data = pd.DataFrame({
         'Date': dates,
-        'Close': 1000 * np.exp(np.cumsum(np.random.normal(0.008, 0.15, len(dates)))),
-        'Volume': np.random.randint(1000000, 5000000, len(dates))
+        'Close': prices[1:],  # Skip initial price
+        'Volume': np.random.randint(1000000, 5000000, len(dates)),
+        'Annual_Return': annual_returns  # Store the annual returns
     })
     sp500_data.to_csv(raw_dir / "market_data/sp500_historical.csv", index=False)
 
-    # Sample bond yields
+    # Sample bond yields - ANNUAL data
+    # Generate more realistic bond yield time series
+    bond_yields_10y = []
+    bond_yields_2y = []
+    base_yield_10y = 0.06  # Start at 6%
+    base_yield_2y = 0.04   # Start at 4%
+    
+    for i in range(len(dates)):
+        # Add mean reversion and some volatility
+        yield_10y = base_yield_10y + np.random.normal(0, 0.01)  # 1% volatility
+        yield_2y = base_yield_2y + np.random.normal(0, 0.008)   # 0.8% volatility
+        
+        # Ensure 10Y > 2Y (normal yield curve)
+        if yield_10y < yield_2y:
+            yield_10y = yield_2y + 0.005  # At least 0.5% spread
+            
+        bond_yields_10y.append(yield_10y)
+        bond_yields_2y.append(yield_2y)
+        
+        # Update base rates with some drift
+        base_yield_10y += np.random.normal(0, 0.002)  # Small drift
+        base_yield_2y += np.random.normal(0, 0.002)
+        
+        # Keep yields reasonable (between 0% and 15%)
+        base_yield_10y = np.clip(base_yield_10y, 0.01, 0.15)
+        base_yield_2y = np.clip(base_yield_2y, 0.01, 0.12)
+
     bond_data = pd.DataFrame({
         'Date': dates,
-        '10Y_Treasury': 2.5 + np.random.normal(0, 0.5, len(dates)),
-        '2Y_Treasury': 1.8 + np.random.normal(0, 0.3, len(dates))
+        '10Y_Treasury': bond_yields_10y,
+        '2Y_Treasury': bond_yields_2y
     })
     bond_data.to_csv(raw_dir / "market_data/bond_yields.csv", index=False)
 

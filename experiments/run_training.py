@@ -54,7 +54,7 @@ def main():
                         help='Path to historical market data files')
 
     parser.add_argument('--historical_start_date', type=str, 
-                        default='2010-01-01',
+                        default='1970-01-01',
                         help='Start date for historical data (YYYY-MM-DD)')
 
     parser.add_argument('--historical_end_date', type=str, 

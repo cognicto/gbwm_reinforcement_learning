@@ -89,7 +89,7 @@ class EnvironmentConfig:
     # Historical data parameters
     min_sequence_length: int = 200  # Minimum time periods needed for training
     historical_validation_split: float = 0.2  # Reserve 20% for validation
-    historical_start_date: str = "2010-01-01"  # Default start date for historical data
+    historical_start_date: str = "1970-01-01"  # Default start date for historical data
     historical_end_date: str = "2023-12-31"    # Default end date for historical data
     
     # Data augmentation options

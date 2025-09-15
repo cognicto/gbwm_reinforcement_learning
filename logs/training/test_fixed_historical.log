@@ -1,0 +1,85 @@
+2025-08-28 20:22:39,353 - src.training.trainer - INFO - Trainer initialized for experiment: test_fixed_historical
+2025-08-28 20:22:39,354 - src.training.trainer - INFO - Setting up environment with 4 goals in historical mode
+2025-08-28 20:22:39,354 - src.training.trainer - INFO - Setting up historical data loader...
+2025-08-28 20:22:39,677 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2025-08-28 20:22:39,861 - src.data.historical_data_loader - INFO - Loaded S&P 500 data: 54 records
+2025-08-28 20:22:39,861 - src.data.historical_data_loader - INFO - Loaded bond data: 54 records
+2025-08-28 20:22:39,865 - src.data.historical_data_loader - INFO - Loaded 15 portfolio configurations
+2025-08-28 20:22:39,865 - src.data.historical_data_loader - INFO - Using pre-calculated annual stock returns
+2025-08-28 20:22:39,866 - src.data.historical_data_loader - INFO - Computed annual returns: 14 years
+2025-08-28 20:22:39,866 - src.data.historical_data_loader - INFO - US Stocks - Mean: 0.153, Std: 0.162
+2025-08-28 20:22:39,867 - src.data.historical_data_loader - INFO - Bonds - Mean: 0.055, Std: 0.078
+2025-08-28 20:22:39,868 - src.data.historical_data_loader - INFO - Computed returns for 15 portfolios
+2025-08-28 20:22:39,868 - src.data.historical_data_loader - INFO - Data length: 14 time periods
+2025-08-28 20:22:39,868 - src.data.historical_data_loader - INFO - Historical data loaded: 14 time periods
+2025-08-28 20:22:39,868 - root - INFO - Historical data validation: {'total_periods': 14, 'num_portfolios': 15, 'available_16y_sequences': 0, 'date_range': {'start': '2010-12-31 00:00:00', 'end': '2023-12-31 00:00:00'}, 'missing_values': 0, 'portfolio_statistics': [{'portfolio_id': 0, 'mean_return': 0.08271084523031834, 'std_return': 0.06043335905877922, 'min_return': 0.0003238648786184576, 'max_return': 0.1905650646077772}, {'portfolio_id': 1, 'mean_return': 0.0869761596923798, 'std_return': 0.06240728837761413, 'min_return': -0.002950087650769249, 'max_return': 0.1990410681410946}, {'portfolio_id': 2, 'mean_return': 0.0912414741544413, 'std_return': 0.0656261103302797, 'min_return': -0.006224040180156953, 'max_return': 0.2115103653959186}, {'portfolio_id': 3, 'mean_return': 0.09550678861650273, 'std_return': 0.06991810230858228, 'min_return': -0.00949799270954466, 'max_return': 0.2354815812895566}, {'portfolio_id': 4, 'mean_return': 0.09977210307856421, 'std_return': 0.07509949176060188, 'min_return': -0.012771945238932367, 'max_return': 0.2594527971831946}, {'portfolio_id': 5, 'mean_return': 0.10895196294919775, 'std_return': 0.08780324941531806, 'min_return': -0.016709099872443494, 'max_return': 0.3077196338418449}, {'portfolio_id': 6, 'mean_return': 0.11157607472108569, 'std_return': 0.09193217092430159, 'min_return': -0.018412396347549688, 'max_return': 0.32213480386516513}, {'portfolio_id': 7, 'mean_return': 0.11420018649297362, 'std_return': 0.09620186889784355, 'min_return': -0.020115692822655882, 'max_return': 0.3365499738884854}, {'portfolio_id': 8, 'mean_return': 0.11682429826486156, 'std_return': 0.10059441929668451, 'min_return': -0.021818989297762076, 'max_return': 0.3509651439118056}, {'portfolio_id': 9, 'mean_return': 0.11944841003674951, 'std_return': 0.10509441894531268, 'min_return': -0.023522285772868273, 'max_return': 0.3653803139351258}, {'portfolio_id': 10, 'mean_return': 0.12865545789322858, 'std_return': 0.12480507706421388, 'min_return': -0.05479608654975823, 'max_return': 0.42676470113159903}, {'portfolio_id': 11, 'mean_return': 0.13029666058340209, 'std_return': 0.12804295408028427, 'min_return': -0.061755273064839855, 'max_return': 0.4363207470019168}, {'portfolio_id': 12, 'mean_return': 0.13193786327357562, 'std_return': 0.13130459783796497, 'min_return': -0.06871445957992148, 'max_return': 0.4458767928722346}, {'portfolio_id': 13, 'mean_return': 0.13357906596374916, 'std_return': 0.13458828044208065, 'min_return': -0.0756736460950031, 'max_return': 0.45543283874255236}, {'portfolio_id': 14, 'mean_return': 0.13522026865392264, 'std_return': 0.1378924274443854, 'min_return': -0.08263283261008472, 'max_return': 0.4649888846128701}]}
+2025-08-28 20:22:39,868 - root - WARNING - Limited historical sequences available: 0
+2025-08-28 20:22:39,869 - src.training.trainer - INFO - Historical data loaded: 14 periods
+2025-08-28 20:22:39,869 - src.training.trainer - INFO - Available 16-year sequences: 0
+2025-08-28 20:22:39,869 - src.training.trainer - WARNING - Limited historical sequences (0) vs batch size (4800). Training will use repeated sequences.
+2025-08-28 20:23:17,544 - src.training.trainer - INFO - Trainer initialized for experiment: test_fixed_historical
+2025-08-28 20:23:17,544 - src.training.trainer - INFO - Setting up environment with 4 goals in historical mode
+2025-08-28 20:23:17,544 - src.training.trainer - INFO - Setting up historical data loader...
+2025-08-28 20:23:17,862 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2025-08-28 20:23:18,043 - src.data.historical_data_loader - INFO - Loaded S&P 500 data: 54 records
+2025-08-28 20:23:18,043 - src.data.historical_data_loader - INFO - Loaded bond data: 54 records
+2025-08-28 20:23:18,046 - src.data.historical_data_loader - INFO - Loaded 15 portfolio configurations
+2025-08-28 20:23:18,046 - src.data.historical_data_loader - INFO - Using pre-calculated annual stock returns
+2025-08-28 20:23:18,047 - src.data.historical_data_loader - INFO - Computed annual returns: 14 years
+2025-08-28 20:23:18,048 - src.data.historical_data_loader - INFO - US Stocks - Mean: 0.153, Std: 0.162
+2025-08-28 20:23:18,048 - src.data.historical_data_loader - INFO - Bonds - Mean: 0.055, Std: 0.078
+2025-08-28 20:23:18,049 - src.data.historical_data_loader - INFO - Computed returns for 15 portfolios
+2025-08-28 20:23:18,049 - src.data.historical_data_loader - INFO - Data length: 14 time periods
+2025-08-28 20:23:18,049 - src.data.historical_data_loader - INFO - Historical data loaded: 14 time periods
+2025-08-28 20:23:18,050 - root - INFO - Historical data validation: {'total_periods': 14, 'num_portfolios': 15, 'available_16y_sequences': 0, 'date_range': {'start': '2010-12-31 00:00:00', 'end': '2023-12-31 00:00:00'}, 'missing_values': 0, 'portfolio_statistics': [{'portfolio_id': 0, 'mean_return': 0.08206577038066079, 'std_return': 0.06010970283146679, 'min_return': 0.008623195204136142, 'max_return': 0.18978152682044158}, {'portfolio_id': 1, 'mean_return': 0.08607305490285924, 'std_return': 0.06171983279347189, 'min_return': 0.007902846414330636, 'max_return': 0.1979441152388247}, {'portfolio_id': 2, 'mean_return': 0.0900803394250577, 'std_return': 0.06447935823875645, 'min_return': 0.007182497624525136, 'max_return': 0.2061067036572079}, {'portfolio_id': 3, 'mean_return': 0.09408762394725616, 'std_return': 0.06824900007304523, 'min_return': 0.006462148834719631, 'max_return': 0.21483703535380005}, {'portfolio_id': 4, 'mean_return': 0.0980949084694546, 'std_return': 0.07287216805008649, 'min_return': 0.005741800044914126, 'max_return': 0.23505469744093688}, {'portfolio_id': 5, 'mean_return': 0.10701673840022512, 'std_return': 0.08489590375820398, 'min_return': 0.004300426000438985, 'max_return': 0.279567980293086}, {'portfolio_id': 6, 'mean_return': 0.10951183520218155, 'std_return': 0.08874053507587547, 'min_return': 0.00386814908006927, 'max_return': 0.2921063734131556}, {'portfolio_id': 7, 'mean_return': 0.11200693200413796, 'std_return': 0.09272798233111158, 'min_return': -0.002568340541957745, 'max_return': 0.30464476653322525}, {'portfolio_id': 8, 'mean_return': 0.11450202880609439, 'std_return': 0.09684060563555463, 'min_return': -0.01392406920959632, 'max_return': 0.3171831596532949}, {'portfolio_id': 9, 'mean_return': 0.11699712560805084, 'std_return': 0.10106312454866459, 'min_return': -0.025279797877234906, 'max_return': 0.3297215527733645}, {'portfolio_id': 10, 'mean_return': 0.12478500879528329, 'std_return': 0.11774955678063258, 'min_return': -0.07719373741084384, 'max_return': 0.3704613940340812}, {'portfolio_id': 11, 'mean_return': 0.12629719651552535, 'std_return': 0.12070697227923616, 'min_return': -0.08489951228796165, 'max_return': 0.3781406630011484}, {'portfolio_id': 12, 'mean_return': 0.12780938423576735, 'std_return': 0.1236889485304193, 'min_return': -0.09260528716507946, 'max_return': 0.3858199319682155}, {'portfolio_id': 13, 'mean_return': 0.12932157195600938, 'std_return': 0.12669375129522656, 'min_return': -0.10031106204219725, 'max_return': 0.3934992009352827}, {'portfolio_id': 14, 'mean_return': 0.13083375967625138, 'std_return': 0.12971979433728795, 'min_return': -0.10801683691931507, 'max_return': 0.40117846990234984}]}
+2025-08-28 20:23:18,050 - root - WARNING - Limited historical sequences available: 0
+2025-08-28 20:23:18,050 - src.training.trainer - INFO - Historical data loaded: 14 periods
+2025-08-28 20:23:18,050 - src.training.trainer - INFO - Available 16-year sequences: 0
+2025-08-28 20:23:18,050 - src.training.trainer - WARNING - Limited historical sequences (0) vs batch size (4800). Training will use repeated sequences.
+2025-08-28 20:24:43,135 - src.training.trainer - INFO - Trainer initialized for experiment: test_fixed_historical
+2025-08-28 20:24:43,136 - src.training.trainer - INFO - Setting up environment with 4 goals in historical mode
+2025-08-28 20:24:43,136 - src.training.trainer - INFO - Setting up historical data loader...
+2025-08-28 20:24:43,487 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2025-08-28 20:24:43,701 - src.data.historical_data_loader - INFO - Loaded S&P 500 data: 54 records
+2025-08-28 20:24:43,701 - src.data.historical_data_loader - INFO - Loaded bond data: 54 records
+2025-08-28 20:24:43,703 - src.data.historical_data_loader - INFO - Loaded 15 portfolio configurations
+2025-08-28 20:24:43,703 - src.data.historical_data_loader - INFO - Using pre-calculated annual stock returns
+2025-08-28 20:24:43,703 - src.data.historical_data_loader - INFO - Computed annual returns: 54 years
+2025-08-28 20:24:43,705 - src.data.historical_data_loader - INFO - US Stocks - Mean: 0.101, Std: 0.155
+2025-08-28 20:24:43,705 - src.data.historical_data_loader - INFO - Bonds - Mean: 0.064, Std: 0.088
+2025-08-28 20:24:43,707 - src.data.historical_data_loader - INFO - Computed returns for 15 portfolios
+2025-08-28 20:24:43,707 - src.data.historical_data_loader - INFO - Data length: 54 time periods
+2025-08-28 20:24:43,707 - src.data.historical_data_loader - INFO - Historical data loaded: 54 time periods
+2025-08-28 20:24:43,707 - root - INFO - Historical data validation: {'total_periods': 54, 'num_portfolios': 15, 'available_16y_sequences': 39, 'date_range': {'start': '1970-12-31 00:00:00', 'end': '2023-12-31 00:00:00'}, 'missing_values': 0, 'portfolio_statistics': [{'portfolio_id': 0, 'mean_return': 0.07445855277500957, 'std_return': 0.07037350832356964, 'min_return': -0.0760514605088305, 'max_return': 0.21851472792879068}, {'portfolio_id': 1, 'mean_return': 0.07592621035845998, 'std_return': 0.07153200598087915, 'min_return': -0.07591056317626241, 'max_return': 0.22197898072063002}, {'portfolio_id': 2, 'mean_return': 0.07739386794191036, 'std_return': 0.07380752081353653, 'min_return': -0.07576966584369432, 'max_return': 0.2268863526548859}, {'portfolio_id': 3, 'mean_return': 0.07886152552536077, 'std_return': 0.07710121542974417, 'min_return': -0.07562876851112622, 'max_return': 0.2396666408505308}, {'portfolio_id': 4, 'mean_return': 0.08032918310881117, 'std_return': 0.08128941970489213, 'min_return': -0.07548787117855812, 'max_return': 0.2524469290461757}, {'portfolio_id': 5, 'mean_return': 0.08364874534012572, 'std_return': 0.09184894437777873, 'min_return': -0.07282806356622556, 'max_return': 0.28176641600276253}, {'portfolio_id': 6, 'mean_return': 0.08456776459663734, 'std_return': 0.09547289093923898, 'min_return': -0.0731306043758581, 'max_return': 0.2944513715034773}, {'portfolio_id': 7, 'mean_return': 0.08548678385314898, 'std_return': 0.09926732435844451, 'min_return': -0.07927532334848579, 'max_return': 0.307136327004192}, {'portfolio_id': 8, 'mean_return': 0.08640580310966059, 'std_return': 0.10321344353464199, 'min_return': -0.08599935084984475, 'max_return': 0.31982128250490677}, {'portfolio_id': 9, 'mean_return': 0.08732482236617221, 'std_return': 0.10729451350035617, 'min_return': -0.09272337835120373, 'max_return': 0.3325062380056215}, {'portfolio_id': 10, 'mean_return': 0.09002641559634321, 'std_return': 0.1261352903908171, 'min_return': -0.1392523581422891, 'max_return': 0.37485826545343426}, {'portfolio_id': 11, 'mean_return': 0.09057505392328201, 'std_return': 0.1291808882256555, 'min_return': -0.1469783560554762, 'max_return': 0.38268409680114657}, {'portfolio_id': 12, 'mean_return': 0.09112369225022077, 'std_return': 0.13225689918021133, 'min_return': -0.15470435396866336, 'max_return': 0.3905099281488588}, {'portfolio_id': 13, 'mean_return': 0.09167233057715955, 'std_return': 0.13536124990543502, 'min_return': -0.16243035188185045, 'max_return': 0.39833575949657113}, {'portfolio_id': 14, 'mean_return': 0.09222096890409837, 'std_return': 0.13849203467477988, 'min_return': -0.17015634979503758, 'max_return': 0.4061615908442834}]}
+2025-08-28 20:24:43,707 - src.training.trainer - INFO - Historical data loaded: 54 periods
+2025-08-28 20:24:43,707 - src.training.trainer - INFO - Available 16-year sequences: 39
+2025-08-28 20:24:43,707 - src.training.trainer - WARNING - Limited historical sequences (39) vs batch size (4800). Training will use repeated sequences.
+2025-08-28 20:24:43,707 - src.environment.gbwm_env - INFO - Historical mode: 39 sequences available
+2025-08-28 20:24:43,708 - src.environment.gbwm_env - INFO - GBWM Environment initialized in historical mode
+2025-08-28 20:24:43,708 - src.training.trainer - INFO - Environment created with initial wealth: $389,881
+2025-08-28 20:24:43,708 - src.training.trainer - INFO - Goal schedule: [4, 8, 12, 16]
+2025-08-28 20:24:43,708 - src.training.trainer - INFO - Data mode: historical
+2025-08-28 20:24:43,708 - src.training.trainer - INFO - Setting up PPO agent
+2025-08-28 20:24:43,744 - src.training.trainer - INFO - Agent created on device: cpu
+2025-08-28 20:24:43,744 - src.training.trainer - INFO - Policy network parameters: 5,457
+2025-08-28 20:24:43,744 - src.training.trainer - INFO - Value network parameters: 4,417
+2025-08-28 20:24:43,744 - src.training.trainer - INFO - ============================================================
+2025-08-28 20:24:43,744 - src.training.trainer - INFO - STARTING TRAINING
+2025-08-28 20:24:43,745 - src.training.trainer - INFO - ============================================================
+2025-08-28 20:24:43,745 - src.training.trainer - INFO - Total iterations: 1
+2025-08-28 20:24:43,745 - src.training.trainer - INFO - Total timesteps: 100,000
+2025-08-28 20:24:43,745 - src.training.trainer - INFO - Batch size: 4800
+2025-08-28 20:24:43,745 - src.training.trainer - INFO - Time horizon: 16
+2025-08-28 20:24:43,745 - src.training.trainer - INFO - ============================================================
+2025-08-28 20:24:43,745 - src.training.trainer - INFO - Configuration saved: /Users/goutamgupta/Desktop/workspace/gbwm_reinforcement_learning/data/results/test_fixed_historical/config.json
+2025-08-28 20:25:02,897 - src.training.trainer - INFO - Iteration    0 | Reward:   28.74 | PolicyLoss:  -0.0953 | ValueLoss: 158.5946 | LR: 0.000000 | Episodes:   4800
+2025-08-28 20:25:02,905 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/gbwm_reinforcement_learning/data/results/test_fixed_historical/checkpoints/checkpoint_0000.pth
+2025-08-28 20:25:03,151 - src.training.trainer - INFO - EVAL    0 | Reward:   54.00±0.00 | Goals: 75.0% | Wealth: $1,179,864
+2025-08-28 20:25:03,152 - src.training.trainer - INFO - ============================================================
+2025-08-28 20:25:03,152 - src.training.trainer - INFO - TRAINING COMPLETED
+2025-08-28 20:25:03,152 - src.training.trainer - INFO - Total training time: 19.41 seconds
+2025-08-28 20:25:03,152 - src.training.trainer - INFO - Time per iteration: 19.41 seconds
+2025-08-28 20:25:03,152 - src.training.trainer - INFO - ============================================================
+2025-08-28 20:25:03,155 - src.models.ppo_agent - INFO - Agent saved to /Users/goutamgupta/Desktop/workspace/gbwm_reinforcement_learning/data/results/test_fixed_historical/final_model.pth
+2025-08-28 20:25:03,155 - src.training.trainer - INFO - Final results saved: /Users/goutamgupta/Desktop/workspace/gbwm_reinforcement_learning/data/results/test_fixed_historical/training_results.json
+2025-08-28 20:25:03,155 - src.training.trainer - INFO - Final model saved: /Users/goutamgupta/Desktop/workspace/gbwm_reinforcement_learning/data/results/test_fixed_historical/final_model.pth

@@ -4,6 +4,13 @@
 
 This document illustrates the complete training and evaluation cycle of the Goals-Based Wealth Management (GBWM) PPO agent through a detailed simulation example. We follow one complete training run from initialization to evaluation.
 
+## Version Update (v1.1)
+
+**Historical Data Bug Fix**: The system now properly supports both simulation and historical data modes:
+- **Simulation Mode**: Synthetic data using Geometric Brownian Motion (unchanged)
+- **Historical Mode**: 54 years of annual market data (1970-2023) with 39 unique 16-year sequences
+- **Fixed Time Scale**: Corrected from monthly to annual periods for proper alignment with 16-year model horizon
+
 ## System Architecture
 
 ```

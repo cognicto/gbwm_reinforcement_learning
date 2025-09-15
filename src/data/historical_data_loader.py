@@ -164,32 +164,61 @@ class HistoricalDataLoader:
     
     def _compute_asset_returns(self) -> Tuple[pd.Series, pd.Series, pd.Series]:
         """
-        Compute monthly returns for the 3 assets
+        Compute ANNUAL returns for the 3 assets
         
         Returns:
             Tuple of (bond_returns, us_stock_returns, intl_stock_returns)
         """
-        # US Stock returns (S&P 500)
-        us_stock_returns = self.sp500_data['Close'].pct_change().dropna()
+        # Check if we have Annual_Return column (new format)
+        if 'Annual_Return' in self.sp500_data.columns:
+            # New format: Use pre-calculated annual returns
+            us_stock_returns = pd.Series(self.sp500_data['Annual_Return'].values)
+            self.logger.info("Using pre-calculated annual stock returns")
+        else:
+            # Legacy format: Compute returns from prices
+            us_stock_returns = self.sp500_data['Close'].pct_change().dropna()
+            self.logger.info("Computing returns from price data")
         
-        # Bond returns (approximated from 10Y Treasury yields)
-        # Simple approximation: return ≈ yield/12 with some volatility
-        bond_yields = self.bond_data['10Y_Treasury'] / 100  # Convert to decimal
-        bond_returns = bond_yields / 12  # Monthly approximation
-        # Add some volatility based on yield changes
-        yield_changes = bond_yields.diff().fillna(0)
-        bond_returns = bond_returns + yield_changes * -0.5  # Duration effect
+        # Bond returns from Treasury yields (ANNUAL basis)
+        bond_yields = self.bond_data['10Y_Treasury'].values  # Already in decimal form
         
-        # International stock returns (approximated as S&P 500 + noise + correlation)
-        # This is a simplification - in practice you'd use actual international data
+        # For bonds, annual return ≈ yield + capital gains/losses
+        # Simplified: use yield as base return with some duration effect
+        bond_returns = []
+        for i in range(len(bond_yields)):
+            base_return = bond_yields[i]  # Use yield as base return
+            
+            # Add capital gains/losses from yield changes (duration effect)
+            if i > 0:
+                yield_change = bond_yields[i] - bond_yields[i-1]
+                duration = 7.0  # Approximate duration for 10Y bonds
+                capital_change = -duration * yield_change
+                total_return = base_return + capital_change
+            else:
+                total_return = base_return
+                
+            bond_returns.append(total_return)
+        
+        bond_returns = pd.Series(bond_returns)
+        
+        # International stock returns (correlated with US stocks)
         intl_correlation = 0.7866  # From paper
-        noise_factor = 0.3
-        intl_base = us_stock_returns * intl_correlation
-        intl_noise = np.random.normal(0, us_stock_returns.std() * noise_factor, len(us_stock_returns))
-        intl_stock_returns = intl_base + intl_noise
+        noise_factor = 0.6  # Higher noise for annual data
         
-        # Ensure all series have the same length and dates
+        if len(us_stock_returns) > 0:
+            intl_base = us_stock_returns * intl_correlation
+            intl_noise = np.random.normal(0, us_stock_returns.std() * noise_factor, len(us_stock_returns))
+            intl_stock_returns = intl_base + intl_noise
+        else:
+            # Fallback if no US stock data
+            intl_stock_returns = np.random.normal(0.08, 0.20, len(bond_returns))  # 8% mean, 20% vol
+        
+        # Ensure all series have the same length
         min_length = min(len(us_stock_returns), len(bond_returns), len(intl_stock_returns))
+        
+        self.logger.info(f"Computed annual returns: {min_length} years")
+        self.logger.info(f"US Stocks - Mean: {us_stock_returns.iloc[:min_length].mean():.3f}, Std: {us_stock_returns.iloc[:min_length].std():.3f}")
+        self.logger.info(f"Bonds - Mean: {bond_returns.iloc[:min_length].mean():.3f}, Std: {bond_returns.iloc[:min_length].std():.3f}")
         
         return (bond_returns.iloc[:min_length],
                 us_stock_returns.iloc[:min_length], 
