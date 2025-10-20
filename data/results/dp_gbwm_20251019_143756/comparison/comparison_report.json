@@ -1,0 +1,39 @@
+{
+  "comparison_type": "Dynamic Programming vs Reinforcement Learning",
+  "timestamp": "2025-10-19 14:50:18.071512",
+  "dp_config": {
+    "algorithm": "Dynamic Programming",
+    "initial_wealth": 100000,
+    "goal_wealth": 200000,
+    "time_horizon": 10,
+    "mu_min": 0.0526,
+    "mu_max": 0.0886,
+    "sigma_min": 0.0374,
+    "sigma_max": 0.1954,
+    "num_portfolios": 15,
+    "grid_density": 3.0,
+    "eff_frontier_a": 0.1,
+    "eff_frontier_b": -0.05,
+    "eff_frontier_c": 0.01
+  },
+  "success_rates": {
+    "dp_theoretical": 0.7434073676664075,
+    "dp_simulation": 0.7327,
+    "num_episodes": 10000
+  },
+  "strategies": {
+    "error": "No RL model provided for strategy comparison"
+  },
+  "performance": {
+    "dp_solve_time": 668.3722259998322,
+    "dp_grid_size": 328,
+    "dp_wealth_range": [
+      21901.10783459056,
+      1279201.7766297304
+    ]
+  },
+  "summary": {
+    "dp_theoretical_optimal": 0.7434073676664075,
+    "dp_simulation_validation": 0.7327
+  }
+}

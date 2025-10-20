@@ -1,0 +1,3 @@
+"""
+Algorithms module for GBWM
+"""

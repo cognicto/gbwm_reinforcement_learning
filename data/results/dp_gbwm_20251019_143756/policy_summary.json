@@ -1,0 +1,682 @@
+{
+  "time_0": {
+    "wealth_21901": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_32609": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_48551": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_72288": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_1": {
+    "wealth_21901": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_32609": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_48551": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_72288": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_2": {
+    "wealth_21901": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_32609": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_48551": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_72288": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_3": {
+    "wealth_21901": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_32609": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_48551": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_72288": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_4": {
+    "wealth_21901": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_32609": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_48551": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_72288": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_5": {
+    "wealth_21901": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_32609": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_48551": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_72288": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_6": {
+    "wealth_21901": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_32609": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_48551": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_72288": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 13,
+      "expected_return": 0.08602857142857143,
+      "volatility": 0.08024127951855896,
+      "risk_level": "Moderate"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_7": {
+    "wealth_21901": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_32609": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_48551": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_72288": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 5,
+      "expected_return": 0.06545714285714285,
+      "volatility": 0.08459081872310314,
+      "risk_level": "Moderate"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_8": {
+    "wealth_21901": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_32609": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_48551": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_72288": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_107629": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_528924": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  },
+  "time_9": {
+    "wealth_21901": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_32609": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_48551": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_72288": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_107629": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_160249": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_238595": {
+      "portfolio_index": 14,
+      "expected_return": 0.0886,
+      "volatility": 0.07971822878112635,
+      "risk_level": "Conservative"
+    },
+    "wealth_355244": {
+      "portfolio_index": 12,
+      "expected_return": 0.08345714285714285,
+      "volatility": 0.08076912978688462,
+      "risk_level": "Moderate"
+    },
+    "wealth_528924": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    },
+    "wealth_787515": {
+      "portfolio_index": 0,
+      "expected_return": 0.0526,
+      "volatility": 0.08744527431485363,
+      "risk_level": "Moderate"
+    },
+    "wealth_1172532": {
+      "portfolio_index": 1,
+      "expected_return": 0.05517142857142857,
+      "volatility": 0.08686666348196986,
+      "risk_level": "Moderate"
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "comparison_type": "Dynamic Programming vs Reinforcement Learning",
+  "timestamp": "2025-10-18 22:53:45.975356",
+  "dp_config": {
+    "algorithm": "Dynamic Programming",
+    "initial_wealth": 100000,
+    "goal_wealth": 200000,
+    "time_horizon": 10,
+    "mu_min": 0.0526,
+    "mu_max": 0.0886,
+    "sigma_min": 0.0374,
+    "sigma_max": 0.1954,
+    "num_portfolios": 10,
+    "grid_density": 1.5,
+    "eff_frontier_a": 0.1,
+    "eff_frontier_b": -0.05,
+    "eff_frontier_c": 0.01
+  },
+  "success_rates": {
+    "dp_theoretical": 0.7274964264070416,
+    "dp_simulation": 0.7327,
+    "num_episodes": 10000,
+    "rl_mean_reward": 54.0,
+    "rl_std_reward": 0.0,
+    "rl_goal_success_rate": 0.75,
+    "rl_final_wealth": 958341.0231823575
+  },
+  "strategies": {
+    "strategy_comparisons": [
+      {
+        "time": 0,
+        "wealth": 21901.10783459056,
+        "dp_portfolio": 9,
+        "dp_return": 0.0886,
+        "dp_volatility": 0.07971822878112635,
+        "dp_risk_level": "Conservative"
+      },
+      {
+        "time": 0,
+        "wealth": 336226.2750333755,
+        "dp_portfolio": 9,
+        "dp_return": 0.0886,
+        "dp_volatility": 0.07971822878112635,
+        "dp_risk_level": "Conservative"
+      },
+      {
+        "time": 0,
+        "wealth": 650551.4422321605,
+        "dp_portfolio": 8,
+        "dp_return": 0.08460000000000001,
+        "dp_volatility": 0.08053394315442403,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 0,
+        "wealth": 964876.6094309455,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 0,
+        "wealth": 1279201.7766297304,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 2,
+        "wealth": 21901.10783459056,
+        "dp_portfolio": 9,
+        "dp_return": 0.0886,
+        "dp_volatility": 0.07971822878112635,
+        "dp_risk_level": "Conservative"
+      },
+      {
+        "time": 2,
+        "wealth": 336226.2750333755,
+        "dp_portfolio": 9,
+        "dp_return": 0.0886,
+        "dp_volatility": 0.07971822878112635,
+        "dp_risk_level": "Conservative"
+      },
+      {
+        "time": 2,
+        "wealth": 650551.4422321605,
+        "dp_portfolio": 7,
+        "dp_return": 0.0806,
+        "dp_volatility": 0.0813611455179928,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 2,
+        "wealth": 964876.6094309455,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 2,
+        "wealth": 1279201.7766297304,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 4,
+        "wealth": 21901.10783459056,
+        "dp_portfolio": 9,
+        "dp_return": 0.0886,
+        "dp_volatility": 0.07971822878112635,
+        "dp_risk_level": "Conservative"
+      },
+      {
+        "time": 4,
+        "wealth": 336226.2750333755,
+        "dp_portfolio": 9,
+        "dp_return": 0.0886,
+        "dp_volatility": 0.07971822878112635,
+        "dp_risk_level": "Conservative"
+      },
+      {
+        "time": 4,
+        "wealth": 650551.4422321605,
+        "dp_portfolio": 2,
+        "dp_return": 0.0606,
+        "dp_volatility": 0.08565766749100749,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 4,
+        "wealth": 964876.6094309455,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 4,
+        "wealth": 1279201.7766297304,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 6,
+        "wealth": 21901.10783459056,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 6,
+        "wealth": 336226.2750333755,
+        "dp_portfolio": 9,
+        "dp_return": 0.0886,
+        "dp_volatility": 0.07971822878112635,
+        "dp_risk_level": "Conservative"
+      },
+      {
+        "time": 6,
+        "wealth": 650551.4422321605,
+        "dp_portfolio": 4,
+        "dp_return": 0.0686,
+        "dp_volatility": 0.08390825942659043,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 6,
+        "wealth": 964876.6094309455,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 6,
+        "wealth": 1279201.7766297304,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 9,
+        "wealth": 21901.10783459056,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 9,
+        "wealth": 336226.2750333755,
+        "dp_portfolio": 9,
+        "dp_return": 0.0886,
+        "dp_volatility": 0.07971822878112635,
+        "dp_risk_level": "Conservative"
+      },
+      {
+        "time": 9,
+        "wealth": 650551.4422321605,
+        "dp_portfolio": 4,
+        "dp_return": 0.0686,
+        "dp_volatility": 0.08390825942659043,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 9,
+        "wealth": 964876.6094309455,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      },
+      {
+        "time": 9,
+        "wealth": 1279201.7766297304,
+        "dp_portfolio": 0,
+        "dp_return": 0.0526,
+        "dp_volatility": 0.08744527431485363,
+        "dp_risk_level": "Moderate"
+      }
+    ]
+  },
+  "performance": {
+    "dp_solve_time": 123.22336530685425,
+    "dp_grid_size": 165,
+    "dp_wealth_range": [
+      21901.10783459056,
+      1279201.7766297304
+    ]
+  },
+  "summary": {
+    "dp_theoretical_optimal": 0.7274964264070416,
+    "dp_simulation_validation": 0.7327,
+    "rl_performance": 0.75,
+    "optimality_gap": -0.022503573592958404,
+    "rl_efficiency": 1.0309328991540192
+  }
+}

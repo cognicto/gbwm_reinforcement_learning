@@ -757,3 +757,10 @@ The GBWM Dynamic Programming algorithm provides the mathematically optimal solut
 - Comprehensive testing and validation
 
 This algorithm serves as both a practical tool for financial planning and the theoretical foundation for more scalable reinforcement learning approaches.
+
+
+  # Exact paper base case (full grid density)
+  python scripts/test_dp_algorithm.py
+
+  # Full experiment with custom parameters
+  python experiments/run_dp_algorithm.py --grid_density 3.0
