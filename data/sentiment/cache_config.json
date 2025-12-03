@@ -1,0 +1,6 @@
+{
+  "default_cache_hours": 24,
+  "max_cache_age_days": 7,
+  "auto_cleanup_enabled": true,
+  "created": "2025-12-03T20:07:10.972691"
+}

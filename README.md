@@ -290,4 +290,22 @@ If you use this code in your research, please cite the original paper by Das et 
 
 ---
 
-⭐ **Star this repository if you find it helpful!**
+⭐ **Star 
+this repository if you find it helpful!**
+
+
+
+Quick Demo:
+  cd /Users/goutamgupta/Desktop/workspace/gbwm_reinforcement_learning
+  python scripts/demo_sentiment_gbwm.py
+
+  Train Sentiment-Aware Model:
+  
+
+
+  Compare Sentiment vs Baseline:
+  python experiments/compare_sentiment_baseline.py --num_goals 4 --timesteps 500000
+
+  The system seamlessly extends your existing GBWM framework with market sentiment capabilities while maintaining full compatibility with the original system. The
+  sentiment features provide the agent with crucial market context to make more informed decisions about goal timing and portfolio allocation, potentially achieving
+  significant performance improvements over sentiment-blind approaches.

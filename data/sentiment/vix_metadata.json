@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-12-03T20:07:12.626785",
+  "record_count": 270,
+  "date_range": {
+    "start": "2024-11-04",
+    "end": "2025-12-02"
+  },
+  "columns": [
+    "vix_open",
+    "vix_high",
+    "vix_low",
+    "vix_close",
+    "vix_volume",
+    "vix_normalized",
+    "vix_centered",
+    "vix_regime",
+    "vix_regime_numeric",
+    "vix_change_1d",
+    "vix_change_5d",
+    "vix_change_20d",
+    "vix_sma_5",
+    "vix_sma_20",
+    "vix_sma_50",
+    "vix_volatility_20d",
+    "vix_percentile"
+  ],
+  "source_info": {
+    "fetched_at": "2025-12-03T20:07:12.626773",
+    "lookback_days": 365,
+    "vix_weight": 1.0,
+    "news_weight": 0.0
+  }
+}

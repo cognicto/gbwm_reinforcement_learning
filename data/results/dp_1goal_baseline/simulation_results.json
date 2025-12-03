@@ -1,0 +1,8 @@
+{
+  "success_rate": 0.9936,
+  "mean_final_wealth": 285409.3300363735,
+  "std_final_wealth": 43838.4964369736,
+  "min_final_wealth": 83701.18837553769,
+  "max_final_wealth": 522079.43023779255,
+  "num_simulations": 10000
+}

@@ -1,0 +1,15 @@
+{
+  "algorithm": "Dynamic Programming",
+  "initial_wealth": 120000.0,
+  "goal_wealth": 200000.0,
+  "time_horizon": 16,
+  "mu_min": 0.0526,
+  "mu_max": 0.0886,
+  "sigma_min": 0.037050606423943346,
+  "sigma_max": 0.19555486708992656,
+  "num_portfolios": 15,
+  "grid_density": 3.0,
+  "eff_frontier_a": 28.328587509510733,
+  "eff_frontier_b": -2.975858817282446,
+  "eff_frontier_c": 0.07952451844762469
+}

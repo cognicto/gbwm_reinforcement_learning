@@ -1,0 +1,29 @@
+[
+  {
+    "iteration": 1,
+    "total_timesteps": 76800,
+    "total_episodes": 4800,
+    "mean_episode_reward": 27.66,
+    "mean_episode_length": 16.0,
+    "mean_goal_success_rate": 0.51,
+    "policy_lr": 0.0091,
+    "value_lr": 0.0091,
+    "policy_loss": -0.09951119859547665,
+    "value_loss": 150.419485912323,
+    "mean_advantage": 6.596247459356164e-08,
+    "mean_return": 15.524699211120605,
+    "mean_entropy": 3.2822329998016357,
+    "mean_ratio": 0.9986884593963623,
+    "clip_fraction": 0.23905598958333332,
+    "portfolio_entropy": 2.700156099937791,
+    "most_selected_portfolio": 12,
+    "portfolio_concentration": 0.088,
+    "mean_vix_sentiment": -0.006908994168043137,
+    "std_vix_sentiment": 0.08008429408073425,
+    "mean_vix_momentum": -0.09224622696638107,
+    "std_vix_momentum": 0.1695728302001953,
+    "sentiment_reward_correlation": 0.033388246129895466,
+    "high_vix_episodes_ratio": 0.0,
+    "low_vix_episodes_ratio": 0.0
+  }
+]

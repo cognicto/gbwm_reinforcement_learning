@@ -1,0 +1,36 @@
+{
+  "experiment_name": "sentiment_complete_fixed",
+  "training_completed": true,
+  "total_iterations": 1,
+  "final_metrics": {
+    "mean_episode_reward": 27.66,
+    "mean_goal_success_rate": 0.51,
+    "policy_loss": -0.09951119859547665,
+    "value_loss": 150.419485912323
+  },
+  "sentiment_enabled": true,
+  "num_goals": 4,
+  "training_time": "2025-12-03T22:23:28.331450",
+  "sentiment_summary": {
+    "sentiment_enabled": true,
+    "vix_sentiment_stats": {
+      "mean": -0.006908994168043137,
+      "std": 0.08008429408073425,
+      "min": -0.06599998474121094,
+      "max": 0.11366666108369827,
+      "percentile_25": -0.06599998474121094,
+      "percentile_75": 0.11366666108369827
+    },
+    "vix_momentum_stats": {
+      "mean": -0.09224622696638107,
+      "std": 0.1695728302001953,
+      "min": -0.3830409646034241,
+      "max": 0.06793798506259918
+    },
+    "sentiment_reward_correlation": {
+      "mean": 0.033388246129895466,
+      "std": 0.2333916394237187,
+      "positive_correlations": 0.59
+    }
+  }
+}

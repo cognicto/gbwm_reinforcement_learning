@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This repository implements Goals-Based Wealth Management (GBWM) using Proximal Policy Optimization (PPO) reinforcement learning. The system solves multi-objective financial planning with competing goals, achieving 94-98% of optimal solutions while scaling linearly with the number of goals.
+This repository implements Goals-Based Wealth Management (GBWM) using both **Dynamic Programming** (optimal theoretical solution) and **Proximal Policy Optimization** (PPO) reinforcement learning. The system solves single-goal and multi-objective financial planning, with RL achieving 94-98% of optimal DP solutions while scaling linearly with the number of goals.
 
 ## Common Commands
 
@@ -53,6 +53,27 @@ python experiments/run_inference.py --model_path data/models/production/gbwm_4go
 python experiments/run_inference.py --model_path {model_path} --mode batch
 ```
 
+### Dynamic Programming (Theoretical Optimal)
+```bash
+# Quick DP test (optimized for speed)
+python test_dp_simple.py
+
+# Paper base case replication (W(0)=$100k → G=$200k in 10 years)
+python scripts/test_dp_base_case.py
+
+# Full DP algorithm test suite (exact paper parameters)
+python scripts/test_dp_algorithm.py
+
+# Run DP with custom parameters
+python experiments/run_dp_algorithm.py --initial_wealth 150000 --goal_wealth 300000 --time_horizon 15
+
+# Run complete DP experiment
+python experiments/run_dp_algorithm.py --initial_wealth 100000 --goal_wealth 200000 --experiment_name "dp_baseline"
+
+# Compare DP vs RL performance
+python experiments/compare_dp_rl.py --dp_results data/results/dp_baseline --rl_model data/results/gbwm_4goals_bs4800_lr0.01/final_model_safe.pth
+```
+
 ### Development & Testing
 ```bash
 # Install in development mode
@@ -77,6 +98,15 @@ black src/ experiments/ scripts/ tests/
 ## Architecture Overview
 
 ### Core Components
+
+#### Dynamic Programming (Theoretical Optimal)
+1. **GBWMDynamicProgramming** (`src/algorithms/dynamic_programming.py`): Optimal strategy solver
+   - Implements Das et al. (2019) paper algorithm exactly
+   - Bellman equation backward recursion with efficient frontier portfolios
+   - Calculates V(Wi,t) value function and μ*(Wi,t) optimal policy
+   - Provides theoretical benchmark: 66.9% success for base case ($100k → $200k in 10 years)
+
+#### Reinforcement Learning (Scalable Learning)
 1. **GBWMEnvironment** (`src/environment/gbwm_env.py`): Custom Gymnasium environment
    - State: `[normalized_time, normalized_wealth]` (2D continuous)
    - Actions: `[goal_decision, portfolio_choice]` (multi-discrete: binary + 15 portfolios)

@@ -1,0 +1,17 @@
+{
+  "experiment_name": "sentiment_complete_fixed",
+  "num_goals": 4,
+  "timesteps": 100000,
+  "batch_size": 4800,
+  "learning_rate": 0.01,
+  "sentiment_enabled": true,
+  "policy_type": "standard",
+  "encoder_type": "feature",
+  "data_mode": "simulation",
+  "sentiment_start_date": "2015-01-01",
+  "cache_dir": "./data/sentiment",
+  "save_interval": 50,
+  "device": "cpu",
+  "random_seed": 42,
+  "output_dir": "./data/results/sentiment_complete_fixed"
+}
