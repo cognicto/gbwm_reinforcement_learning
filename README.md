@@ -300,8 +300,7 @@ Quick Demo:
   python scripts/demo_sentiment_gbwm.py
 
   Train Sentiment-Aware Model:
-  
-
+  python experiments/train_sentiment_gbwm.py --num_goals 4 --timesteps 1000000 --sentiment_enabled
 
   Compare Sentiment vs Baseline:
   python experiments/compare_sentiment_baseline.py --num_goals 4 --timesteps 500000

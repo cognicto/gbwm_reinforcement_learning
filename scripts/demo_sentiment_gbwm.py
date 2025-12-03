@@ -225,11 +225,16 @@ def demo_full_workflow():
     print(f"   Using sentiment config: {sentiment_config.model.encoder_type} encoder")
     print(f"   Sentiment enabled: {sentiment_config.experiment.sentiment_enabled}")
     
-    # Setup sentiment provider
-    sentiment_provider = SentimentProvider(
-        cache_dir='./demo_cache',
-        **sentiment_config.sentiment.__dict__
-    )
+    # Setup sentiment provider with demo cache directory
+    # Filter kwargs to only include valid SentimentProvider parameters
+    valid_params = {'cache_dir', 'vix_weight', 'news_weight', 'long_term_vix_mean', 'lookback_days'}
+    sentiment_kwargs = {
+        k: v for k, v in sentiment_config.sentiment.__dict__.items() 
+        if k in valid_params
+    }
+    sentiment_kwargs['cache_dir'] = './demo_cache'  # Override for demo
+    
+    sentiment_provider = SentimentProvider(**sentiment_kwargs)
     
     if not sentiment_provider.initialize():
         print("❌ Failed to setup sentiment provider")
@@ -241,11 +246,11 @@ def demo_full_workflow():
         sentiment_provider=sentiment_provider
     )
     
-    # Setup agent
+    # Setup agent with configuration compatible with feature encoder
     config = TrainingConfig(
         batch_size=5,
         time_horizon=3,
-        n_neurons=16,
+        n_neurons=64,  # Match feature encoder output
         device='cpu'
     )
     

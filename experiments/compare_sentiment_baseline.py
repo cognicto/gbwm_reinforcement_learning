@@ -322,20 +322,20 @@ def generate_comparison_report(
             'sentiment': sentiment_eval
         },
         'performance_comparison': {
-            'reward_improvement_percent': reward_improvement,
-            'goal_success_improvement_percent': goal_improvement,
-            'portfolio_entropy_ratio': sentiment_eval['portfolio_entropy'] / baseline_eval['portfolio_entropy'],
-            'reward_significance': _calculate_statistical_significance(
+            'reward_improvement_percent': float(reward_improvement),
+            'goal_success_improvement_percent': float(goal_improvement),
+            'portfolio_entropy_ratio': float(sentiment_eval['portfolio_entropy'] / baseline_eval['portfolio_entropy']) if baseline_eval['portfolio_entropy'] != 0 else float('inf'),
+            'reward_significance': float(_calculate_statistical_significance(
                 baseline_eval['episode_rewards'],
                 sentiment_eval['episode_rewards']
-            )
+            ))
         },
         'key_insights': {
-            'sentiment_outperforms_reward': sentiment_eval['mean_episode_reward'] > baseline_eval['mean_episode_reward'],
-            'sentiment_outperforms_goals': sentiment_eval['mean_goal_success_rate'] > baseline_eval['mean_goal_success_rate'],
-            'sentiment_more_diverse_portfolios': sentiment_eval['portfolio_entropy'] > baseline_eval['portfolio_entropy'],
-            'reward_improvement_magnitude': abs(reward_improvement),
-            'goal_improvement_magnitude': abs(goal_improvement)
+            'sentiment_outperforms_reward': bool(sentiment_eval['mean_episode_reward'] > baseline_eval['mean_episode_reward']),
+            'sentiment_outperforms_goals': bool(sentiment_eval['mean_goal_success_rate'] > baseline_eval['mean_goal_success_rate']),
+            'sentiment_more_diverse_portfolios': bool(sentiment_eval['portfolio_entropy'] > baseline_eval['portfolio_entropy']),
+            'reward_improvement_magnitude': float(abs(reward_improvement)),
+            'goal_improvement_magnitude': float(abs(goal_improvement))
         }
     }
     
