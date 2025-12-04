@@ -1,0 +1,25 @@
+
+SENTIMENT VS BASELINE GBWM COMPARISON REPORT
+==========================================
+
+Experiment Configuration:
+- Goals: 4
+- Training Timesteps: 100,000
+- Evaluation Episodes: 10
+
+Performance Results:
+- Episode Reward: 54.00 vs 54.00 
+  (Improvement: +0.0%)
+  
+- Goal Success Rate: 100.0% vs 100.0%
+  (Improvement: +0.0%)
+  
+- Portfolio Diversity: 0.23 vs -0.00
+  (Entropy ratio: -inf)
+
+Key Findings:
+- Sentiment-aware model underperforms baseline in episode rewards
+- Sentiment-aware model underperforms baseline in goal success
+- Sentiment-aware model shows higher portfolio diversity
+
+Statistical Significance: Not significant (identical distributions)

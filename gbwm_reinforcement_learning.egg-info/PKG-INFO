@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: gbwm-reinforcement-learning
+Version: 0.1.0
+Summary: Goals-Based Wealth Management using Reinforcement Learning
+Author: Your Name
+Author-email: your.email@example.com
+Requires-Python: >=3.8
+License-File: LICENSE
+Requires-Dist: torch>=2.0.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: gymnasium>=0.29.0
+Requires-Dist: stable-baselines3>=2.0.0
+Requires-Dist: scipy>=1.9.0
+Requires-Dist: pandas>=1.5.0
+Requires-Dist: matplotlib>=3.6.0
+Requires-Dist: seaborn>=0.12.0
+Requires-Dist: pymoo>=0.6.0
+Requires-Dist: tqdm>=4.64.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"

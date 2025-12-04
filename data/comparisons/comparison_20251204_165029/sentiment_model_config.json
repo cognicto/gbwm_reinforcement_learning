@@ -1,0 +1,48 @@
+{
+  "agent_config": {
+    "policy_type": "standard",
+    "value_type": "standard",
+    "encoder_type": "feature",
+    "sentiment_enabled": true,
+    "state_dim": 4,
+    "num_portfolios": 15
+  },
+  "training_config": {
+    "n_traj": 50000,
+    "batch_size": 4800,
+    "learning_rate": 0.01,
+    "clip_epsilon": 0.5,
+    "n_neurons": 64,
+    "ppo_epochs": 4,
+    "mini_batch_size": 256,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "entropy_coeff": 0.01,
+    "value_loss_coeff": 0.5,
+    "max_grad_norm": 0.5,
+    "time_horizon": 16,
+    "device": "cpu"
+  },
+  "sentiment_analysis": {
+    "sentiment_enabled": true,
+    "vix_sentiment_stats": {
+      "mean": -0.006908994168043137,
+      "std": 0.08008429408073425,
+      "min": -0.06599998474121094,
+      "max": 0.11366666108369827,
+      "percentile_25": -0.06599998474121094,
+      "percentile_75": 0.11366666108369827
+    },
+    "vix_momentum_stats": {
+      "mean": -0.09224622696638107,
+      "std": 0.1695728302001953,
+      "min": -0.3830409646034241,
+      "max": 0.06793798506259918
+    },
+    "sentiment_reward_correlation": {
+      "mean": 0.08550530169831032,
+      "std": 1.3877787807814457e-17,
+      "positive_correlations": 1.0
+    }
+  }
+}

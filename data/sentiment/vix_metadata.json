@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-12-03T20:07:12.626785",
-  "record_count": 270,
+  "timestamp": "2025-12-04T20:16:50.859268",
+  "record_count": 271,
   "date_range": {
     "start": "2024-11-04",
-    "end": "2025-12-02"
+    "end": "2025-12-03"
   },
   "columns": [
     "vix_open",
@@ -25,7 +25,7 @@
     "vix_percentile"
   ],
   "source_info": {
-    "fetched_at": "2025-12-03T20:07:12.626773",
+    "fetched_at": "2025-12-04T20:16:50.859249",
     "lookback_days": 365,
     "vix_weight": 1.0,
     "news_weight": 0.0

@@ -85,7 +85,7 @@ def train_model(
     
     # Calculate training iterations
     steps_per_batch = config.batch_size * 16
-    total_iterations = args.timesteps // steps_per_batch
+    total_iterations = max(1, args.timesteps // steps_per_batch)  # Ensure at least 1 iteration
     
     training_history = []
     
@@ -325,10 +325,14 @@ def generate_comparison_report(
             'reward_improvement_percent': float(reward_improvement),
             'goal_success_improvement_percent': float(goal_improvement),
             'portfolio_entropy_ratio': float(sentiment_eval['portfolio_entropy'] / baseline_eval['portfolio_entropy']) if baseline_eval['portfolio_entropy'] != 0 else float('inf'),
-            'reward_significance': float(_calculate_statistical_significance(
+            'reward_significance_p_value': _calculate_statistical_significance(
                 baseline_eval['episode_rewards'],
                 sentiment_eval['episode_rewards']
-            ))
+            )[0],
+            'reward_significance': _calculate_statistical_significance(
+                baseline_eval['episode_rewards'],
+                sentiment_eval['episode_rewards']
+            )[1]
         },
         'key_insights': {
             'sentiment_outperforms_reward': bool(sentiment_eval['mean_episode_reward'] > baseline_eval['mean_episode_reward']),
@@ -383,22 +387,30 @@ Statistical Significance: {report['performance_comparison']['reward_significance
     print(summary_text)
 
 
-def _calculate_statistical_significance(baseline_rewards: list, sentiment_rewards: list) -> str:
-    """Calculate statistical significance using t-test"""
+def _calculate_statistical_significance(baseline_rewards: list, sentiment_rewards: list) -> tuple:
+    """Calculate statistical significance using t-test
+    
+    Returns:
+        tuple: (p_value, description) where p_value is float and description is str
+    """
     try:
         from scipy import stats
         t_stat, p_value = stats.ttest_ind(sentiment_rewards, baseline_rewards)
         
+        # Handle NaN case (identical distributions)
+        if np.isnan(p_value):
+            return 1.0, "Not significant (identical distributions)"
+        
         if p_value < 0.001:
-            return f"Highly significant (p < 0.001)"
+            return p_value, f"Highly significant (p < 0.001)"
         elif p_value < 0.01:
-            return f"Very significant (p = {p_value:.3f})"
+            return p_value, f"Very significant (p = {p_value:.3f})"
         elif p_value < 0.05:
-            return f"Significant (p = {p_value:.3f})"
+            return p_value, f"Significant (p = {p_value:.3f})"
         else:
-            return f"Not significant (p = {p_value:.3f})"
+            return p_value, f"Not significant (p = {p_value:.3f})"
     except ImportError:
-        return "Statistical test not available (scipy required)"
+        return 1.0, "Statistical test not available (scipy required)"
 
 
 def main():

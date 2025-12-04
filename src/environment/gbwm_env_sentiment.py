@@ -171,6 +171,86 @@ class GBWMEnvironmentWithSentiment(GBWMEnvironment):
         
         return self.current_date
     
+    def _compute_sentiment_adjusted_gbm_parameters(
+        self,
+        portfolio_choice: int,
+        vix_sentiment: float,
+        vix_momentum: float,
+        regime: str = "normal"
+    ) -> tuple:
+        """
+        Compute sentiment-dependent μ and σ parameters for GBM
+        
+        Args:
+            portfolio_choice: Index of chosen portfolio
+            vix_sentiment: VIX sentiment [-1 to +1, where +1 = fear, -1 = greed]
+            vix_momentum: VIX momentum [-1 to +1, rate of VIX change]
+            regime: Market regime ("fear", "normal", "greed")
+        
+        Returns:
+            Tuple of (adjusted_mu, adjusted_sigma)
+        """
+        # Get base portfolio parameters
+        base_mu = self.portfolio_means[portfolio_choice]
+        base_sigma = self.portfolio_stds[portfolio_choice]
+        
+        # === EXPECTED RETURN ADJUSTMENTS ===
+        
+        # 1. Sentiment Effect on Returns
+        # High VIX (fear, +1) -> Lower expected returns due to risk aversion  
+        # Low VIX (greed, -1) -> Higher expected returns due to risk-seeking
+        sentiment_return_effect = -vix_sentiment * 0.025  # ±2.5% adjustment
+        
+        # 2. Momentum Effect on Returns  
+        # Rising VIX (positive momentum) -> Near-term return reduction
+        # Falling VIX (negative momentum) -> Near-term return boost
+        momentum_return_effect = -vix_momentum * 0.015  # ±1.5% adjustment
+        
+        # 3. Regime-Specific Base Adjustments
+        regime_adjustments = {
+            "fear": {"mu_adj": -0.02, "sigma_mult": 1.4},      # -2% return, +40% volatility
+            "normal": {"mu_adj": 0.0, "sigma_mult": 1.0},       # No adjustment
+            "greed": {"mu_adj": 0.01, "sigma_mult": 0.7}       # +1% return, -30% volatility  
+        }
+        
+        regime_mu_adj = regime_adjustments.get(regime, regime_adjustments["normal"])["mu_adj"]
+        regime_sigma_mult = regime_adjustments.get(regime, regime_adjustments["normal"])["sigma_mult"]
+        
+        # === VOLATILITY ADJUSTMENTS ===
+        
+        # 1. VIX Direct Effect on Volatility
+        # High VIX -> Higher volatility (markets are more uncertain)
+        # Low VIX -> Lower volatility (markets are calmer)
+        vix_volatility_effect = vix_sentiment * 0.3  # Up to ±30% volatility change
+        
+        # 2. Momentum Effect on Volatility
+        # Rapid VIX changes -> Additional volatility uncertainty
+        momentum_volatility_effect = abs(vix_momentum) * 0.15  # Up to +15% for rapid changes
+        
+        # === COMPUTE FINAL PARAMETERS ===
+        
+        # Expected Return: μ_adjusted = μ_base + sentiment_effects + regime_effects  
+        mu_adjusted = base_mu + sentiment_return_effect + momentum_return_effect + regime_mu_adj
+        
+        # Volatility: σ_adjusted = σ_base * regime_multiplier * (1 + vix_effects)
+        sigma_base_adjusted = base_sigma * regime_sigma_mult
+        sigma_adjusted = sigma_base_adjusted * (1.0 + vix_volatility_effect + momentum_volatility_effect)
+        
+        # Bounds to prevent extreme values
+        mu_adjusted = np.clip(mu_adjusted, -0.15, 0.30)    # Bounded to [-15%, +30%] annual
+        sigma_adjusted = np.clip(sigma_adjusted, 0.02, 1.0)  # Bounded to [2%, 100%] annual volatility
+        
+        return mu_adjusted, sigma_adjusted
+
+    def _classify_vix_regime(self, vix_level: float) -> str:
+        """Classify market regime based on VIX level"""
+        if vix_level > 25:
+            return "fear"
+        elif vix_level < 15: 
+            return "greed"
+        else:
+            return "normal"
+    
     def _evolve_portfolio_with_sentiment(
         self, 
         portfolio_choice: int, 
@@ -178,7 +258,10 @@ class GBWMEnvironmentWithSentiment(GBWMEnvironment):
         sentiment_features: np.ndarray
     ) -> float:
         """
-        Evolve wealth considering sentiment-based market conditions
+        Evolve wealth using sentiment-dependent Geometric Brownian Motion
+        
+        This implements proper sentiment-dependent GBM where sentiment affects
+        the fundamental μ and σ parameters in W(t+1) = W(t) * exp(μ - σ²/2 + σZ)
         
         Args:
             portfolio_choice: Index of chosen portfolio
@@ -191,36 +274,40 @@ class GBWMEnvironmentWithSentiment(GBWMEnvironment):
         if wealth <= 0:
             return 0.0
         
-        # Get base portfolio return using parent method
-        base_wealth = self._evolve_portfolio(portfolio_choice, wealth)
-        base_return = (base_wealth / wealth) - 1.0 if wealth > 0 else 0.0
-        
-        # Apply sentiment-based adjustments if enabled
+        # Apply sentiment-based GBM if enabled and in simulation mode
         if self.sentiment_enabled and self.data_mode == "simulation":
             vix_sentiment, vix_momentum = sentiment_features
             
-            # Sentiment-based return adjustment
-            # High VIX (negative sentiment) -> potential for higher future returns (mean reversion)
-            # This captures the empirical relationship that high VIX periods often precede market recoveries
-            vix_adjustment = -vix_sentiment * 0.01  # 1% adjustment per unit of sentiment
+            # Get current VIX level for regime classification
+            # Use sentiment provider to get actual VIX level
+            try:
+                sentiment_info = self.sentiment_provider.get_sentiment_info(self.current_date)
+                vix_level = sentiment_info.get('vix_level', 20.0)  # Default to 20 if unavailable
+                regime = self._classify_vix_regime(vix_level)
+            except:
+                vix_level = 20.0  # Default VIX level
+                regime = "normal"
             
-            # Momentum adjustment
-            # Negative momentum (VIX increasing) -> slightly lower returns in near term
-            momentum_adjustment = -vix_momentum * 0.005  # 0.5% adjustment per unit of momentum
+            # Compute sentiment-adjusted GBM parameters
+            mu_adjusted, sigma_adjusted = self._compute_sentiment_adjusted_gbm_parameters(
+                portfolio_choice, vix_sentiment, vix_momentum, regime
+            )
             
-            # Total adjustment (bounded to prevent extreme values)
-            total_adjustment = np.clip(vix_adjustment + momentum_adjustment, -0.05, 0.05)  # ±5% max
+            # Apply Geometric Brownian Motion with adjusted parameters
+            # W(t+1) = W(t) * exp((μ - 0.5*σ²) + σ*Z)
+            drift = mu_adjusted - 0.5 * sigma_adjusted ** 2
+            diffusion = sigma_adjusted * np.random.normal(0, 1)
+            portfolio_return = np.exp(drift + diffusion)
             
-            # Apply adjustment
-            adjusted_return = base_return + total_adjustment
-            new_wealth = wealth * (1.0 + adjusted_return)
+            new_wealth = wealth * portfolio_return
             
-            self.logger.debug(f"Sentiment adjustment - Portfolio {portfolio_choice}: "
-                             f"base_return={base_return:.3f}, adjustment={total_adjustment:.3f}, "
-                             f"final_return={adjusted_return:.3f}")
+            self.logger.debug(f"Sentiment-aware GBM - Portfolio {portfolio_choice}: "
+                             f"base_μ={self.portfolio_means[portfolio_choice]:.3f} → {mu_adjusted:.3f}, "
+                             f"base_σ={self.portfolio_stds[portfolio_choice]:.3f} → {sigma_adjusted:.3f}, "
+                             f"regime={regime}, return={portfolio_return-1:.3f}")
         else:
-            # No sentiment adjustment
-            new_wealth = base_wealth
+            # Use standard portfolio evolution (no sentiment)
+            new_wealth = self._evolve_portfolio(portfolio_choice, wealth)
         
         return max(0.0, new_wealth)  # Wealth cannot be negative
     
